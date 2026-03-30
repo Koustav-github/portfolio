@@ -1,0 +1,36 @@
+# env files
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+*.so
+
+# uv / virtual envs
+.venv/
+venv/
+.python-version
+uv.lock
+
+# dist / build
+dist/
+build/
+*.egg-info/
+*.egg
+
+# testing
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# misc
+.DS_Store
+.idea/
+.vscode/
