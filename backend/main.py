@@ -80,10 +80,10 @@ async def health() -> dict[str, str]:
 async def contact() -> dict[str, str]:
     """Returns contact information for Koustav Manna."""
     return {
-        "email": os.getenv("CONTACT_EMAIL", "koustav@example.com"),
-        "linkedin": os.getenv("CONTACT_LINKEDIN", "https://linkedin.com/in/koustavmanna"),
-        "twitter": os.getenv("CONTACT_TWITTER", "https://twitter.com/koustavmanna"),
-        "github": os.getenv("CONTACT_GITHUB", "https://github.com/koustavmanna"),
+        "email": os.getenv("CONTACT_EMAIL", "/"),
+        "linkedin": os.getenv("CONTACT_LINKEDIN", "/"),
+        "twitter": os.getenv("CONTACT_TWITTER", "/"),
+        "github": os.getenv("CONTACT_GITHUB", "/"),
     }
 
 

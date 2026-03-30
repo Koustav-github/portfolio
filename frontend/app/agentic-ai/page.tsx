@@ -58,10 +58,10 @@ const skills = [
 ];
 
 const projects = [
-  { title: "Multi-Agent Research System", description: "An autonomous research agent built with LangGraph that decomposes complex questions, delegates to specialized sub-agents, and synthesizes comprehensive answers with citations.", tags: ["LangGraph", "OpenAI", "Tavily Search", "Python", "FastAPI", "Streamlit"], accent: "green" as const, github: "https://github.com/koustavmanna", featured: true },
-  { title: "Document RAG Pipeline", description: "Enterprise-grade Retrieval Augmented Generation pipeline with hybrid search (dense + sparse), re-ranking, and multi-document reasoning over uploaded PDFs.", tags: ["LangChain", "Pinecone", "OpenAI", "FastAPI", "BM25", "Cohere Rerank"], accent: "cyan" as const, github: "https://github.com/koustavmanna" },
-  { title: "Code Review Agent", description: "An agentic code reviewer that analyzes GitHub PRs, identifies bugs, suggests improvements, and generates detailed review comments using Claude's extended thinking.", tags: ["Anthropic Claude", "LangChain", "GitHub API", "Python", "Docker"], accent: "purple" as const, github: "https://github.com/koustavmanna" },
-  { title: "Conversational SQL Agent", description: "A natural language to SQL agent that understands schema, generates optimized queries, and explains results in plain English. Supports Postgres and SQLite.", tags: ["LangChain", "GPT-4o", "SQLAlchemy", "Streamlit", "PostgreSQL"], accent: "green" as const, github: "https://github.com/koustavmanna" },
+  { title: "Multi-Agent Research System", description: "An autonomous research agent built with LangGraph that decomposes complex questions, delegates to specialized sub-agents, and synthesizes comprehensive answers with citations.", tags: ["LangGraph", "OpenAI", "Tavily Search", "Python", "FastAPI", "Streamlit"], accent: "green" as const, github: "/", featured: true },
+  { title: "Document RAG Pipeline", description: "Enterprise-grade Retrieval Augmented Generation pipeline with hybrid search (dense + sparse), re-ranking, and multi-document reasoning over uploaded PDFs.", tags: ["LangChain", "Pinecone", "OpenAI", "FastAPI", "BM25", "Cohere Rerank"], accent: "cyan" as const, github: "/" },
+  { title: "Code Review Agent", description: "An agentic code reviewer that analyzes GitHub PRs, identifies bugs, suggests improvements, and generates detailed review comments using Claude's extended thinking.", tags: ["Anthropic Claude", "LangChain", "GitHub API", "Python", "Docker"], accent: "purple" as const, github: "/" },
+  { title: "Conversational SQL Agent", description: "A natural language to SQL agent that understands schema, generates optimized queries, and explains results in plain English. Supports Postgres and SQLite.", tags: ["LangChain", "GPT-4o", "SQLAlchemy", "Streamlit", "PostgreSQL"], accent: "green" as const, github: "/" },
 ];
 
 const ragSteps = [

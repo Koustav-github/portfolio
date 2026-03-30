@@ -148,8 +148,8 @@ const contacts = [
   {
     icon: Mail,
     label: "Email",
-    value: "koustav@example.com",
-    href: "mailto:koustav@example.com",
+    value: "koustav.2005.manna@gmail.com",
+    href: "mailto:koustav.2005.manna@gmail.com",
     accent: "cyan",
     desc: "Drop me a message",
   },
@@ -157,7 +157,7 @@ const contacts = [
     icon: Linkedin,
     label: "LinkedIn",
     value: "koustavmanna",
-    href: "https://linkedin.com/in/koustavmanna",
+    href: "https://www.linkedin.com/in/koustav-manna-b6a64330b/",
     accent: "purple",
     desc: "Connect with me",
   },
@@ -165,19 +165,20 @@ const contacts = [
     icon: XTwitterIcon,
     label: "Twitter / X",
     value: "@koustavmanna",
-    href: "https://twitter.com/koustavmanna",
+    href: "https://x.com/KoustavMan51112",
     accent: "green",
     desc: "Follow my work",
   },
 ];
 
 /* ── Section Wrapper ──────────────────────────────────────── */
-function Section({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+function Section({ children, className = "", id }: { children: React.ReactNode; className?: string; id?: string }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   return (
     <motion.section
       ref={ref}
+      id={id}
       variants={staggerContainer(0.12, 0.05)}
       initial="hidden"
       animate={inView ? "show" : "hidden"}
@@ -457,7 +458,7 @@ export default function HomePage() {
       </Section>
 
       {/* ── Domains ────────────────────────────────────────── */}
-      <Section id="domains" className="relative py-28 overflow-hidden">
+      <Section   id="domains" className="relative py-28 overflow-hidden">
         <div className="absolute inset-0 dark:bg-[#0a0a0f] bg-white" />
         <GridBackground variant="grid" className="opacity-25 dark:opacity-35" />
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[300px] dark:bg-cyan-500/4 bg-cyan-400/3 rounded-full blur-3xl pointer-events-none" />

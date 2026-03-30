@@ -6,7 +6,7 @@ import {
   CheckCircle2, Sparkles, Code2, Cpu,
 } from "lucide-react";
 import Link from "next/link";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, Variants } from "framer-motion";
 import ProjectCard from "@/components/ProjectCard";
 import SkillBadge from "@/components/SkillBadge";
 import GridBackground from "@/components/GridBackground";
@@ -36,7 +36,7 @@ const stagger = (s = 0.1, d = 0) => ({
 /* ── useInView wrapper ─────────────────────────────────────── */
 function FadeSection({ children, className = "", variants = stagger() }: {
   children: React.ReactNode; className?: string;
-  variants?: { hidden: object; show: object };
+  variants?: Variants;
 }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
@@ -62,10 +62,10 @@ const skills = [
 ];
 
 const projects = [
-  { title: "FullStack Task Manager", description: "A real-time collaborative task management app with drag-and-drop boards, team workspaces, and role-based access control. Built with Next.js App Router and Postgres.", tags: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "WebSockets", "Tailwind"], accent: "cyan" as const, github: "https://github.com/koustavmanna", featured: true },
-  { title: "Developer Portfolio CMS", description: "A headless CMS-powered portfolio system with markdown support, project management, and analytics dashboard. Supports dark/light theming.", tags: ["Next.js", "MDX", "Tailwind", "Supabase", "Vercel"], accent: "green" as const, github: "https://github.com/koustavmanna" },
-  { title: "REST API Boilerplate", description: "Production-ready Node.js + TypeScript REST API template with JWT auth, rate limiting, request validation, and Docker configuration.", tags: ["Node.js", "TypeScript", "Express", "JWT", "Docker", "Zod"], accent: "purple" as const, github: "https://github.com/koustavmanna" },
-  { title: "Realtime Chat App", description: "End-to-end encrypted real-time chat application with rooms, direct messages, file sharing, and read receipts using Socket.io.", tags: ["React", "Socket.io", "Node.js", "MongoDB", "Redis"], accent: "cyan" as const, github: "https://github.com/koustavmanna" },
+  { title: "FullStack Task Manager", description: "A real-time collaborative task management app with drag-and-drop boards, team workspaces, and role-based access control. Built with Next.js App Router and Postgres.", tags: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "WebSockets", "Tailwind"], accent: "cyan" as const, github: "/", featured: true },
+  { title: "Developer Portfolio CMS", description: "A headless CMS-powered portfolio system with markdown support, project management, and analytics dashboard. Supports dark/light theming.", tags: ["Next.js", "MDX", "Tailwind", "Supabase", "Vercel"], accent: "green" as const, github: "/" },
+  { title: "REST API Boilerplate", description: "Production-ready Node.js + TypeScript REST API template with JWT auth, rate limiting, request validation, and Docker configuration.", tags: ["Node.js", "TypeScript", "Express", "JWT", "Docker", "Zod"], accent: "purple" as const, github: "/" },
+  { title: "Realtime Chat App", description: "End-to-end encrypted real-time chat application with rooms, direct messages, file sharing, and read receipts using Socket.io.", tags: ["React", "Socket.io", "Node.js", "MongoDB", "Redis"], accent: "cyan" as const, github: "/" },
 ];
 
 const principles = [

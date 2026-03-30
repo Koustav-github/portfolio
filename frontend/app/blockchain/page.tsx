@@ -58,10 +58,10 @@ const skills = [
 ];
 
 const projects = [
-  { title: "DeFi Yield Aggregator", description: "A gas-optimized yield farming aggregator that automatically rebalances positions across Aave, Compound, and Yearn to maximize APY for depositors.", tags: ["Solidity", "Hardhat", "Ethers.js", "React", "Aave", "Compound"], accent: "purple" as const, github: "https://github.com/koustavmanna", featured: true },
-  { title: "NFT Marketplace", description: "A decentralized NFT marketplace with lazy minting, royalty enforcement via ERC-2981, auction mechanics, and a React storefront.", tags: ["Solidity", "ERC-721", "ERC-2981", "Next.js", "IPFS", "Wagmi"], accent: "cyan" as const, github: "https://github.com/koustavmanna" },
-  { title: "Multi-Sig Treasury", description: "A multi-signature wallet for DAO treasury management with proposal voting, time-locks, and on-chain governance. Inspired by Gnosis Safe.", tags: ["Solidity", "OpenZeppelin", "Foundry", "TypeScript"], accent: "green" as const, github: "https://github.com/koustavmanna" },
-  { title: "Token Vesting Contract", description: "A flexible token vesting contract with cliff periods, linear vesting schedules, and revocability — used for team token distributions.", tags: ["Solidity", "ERC-20", "Hardhat", "Ethers.js"], accent: "purple" as const, github: "https://github.com/koustavmanna" },
+  { title: "DeFi Yield Aggregator", description: "A gas-optimized yield farming aggregator that automatically rebalances positions across Aave, Compound, and Yearn to maximize APY for depositors.", tags: ["Solidity", "Hardhat", "Ethers.js", "React", "Aave", "Compound"], accent: "purple" as const, github: "/", featured: true },
+  { title: "NFT Marketplace", description: "A decentralized NFT marketplace with lazy minting, royalty enforcement via ERC-2981, auction mechanics, and a React storefront.", tags: ["Solidity", "ERC-721", "ERC-2981", "Next.js", "IPFS", "Wagmi"], accent: "cyan" as const, github: "/" },
+  { title: "Multi-Sig Treasury", description: "A multi-signature wallet for DAO treasury management with proposal voting, time-locks, and on-chain governance. Inspired by Gnosis Safe.", tags: ["Solidity", "OpenZeppelin", "Foundry", "TypeScript"], accent: "green" as const, github: "/" },
+  { title: "Token Vesting Contract", description: "A flexible token vesting contract with cliff periods, linear vesting schedules, and revocability — used for team token distributions.", tags: ["Solidity", "ERC-20", "Hardhat", "Ethers.js"], accent: "purple" as const, github: "/" },
 ];
 
 const contractPrinciples = [
