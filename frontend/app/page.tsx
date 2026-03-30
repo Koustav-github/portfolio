@@ -149,7 +149,7 @@ const contacts = [
     icon: Mail,
     label: "Email",
     value: "koustav.2005.manna@gmail.com",
-    href: "mailto:koustav.2005.manna@gmail.com",
+    href: "https://mail.google.com/mail/u/0/#inbox?compose=DmwnWrRspxWvLCLmjCCSzzCTQkZHSWWhQVFgjFQCXXqHtbHCHbNbtwlpWGBJXWBqBPdqWztSDXkV",
     accent: "cyan",
     desc: "Drop me a message",
   },
