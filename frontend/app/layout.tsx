@@ -1,29 +1,29 @@
 import type { Metadata } from "next";
-import { ThemeProvider } from "next-themes";
 import Navbar from "@/components/Navbar";
+import SiteFooter from "@/components/SiteFooter";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Koustav Manna — Portfolio",
+  title: "Koustav Manna — Software Engineer",
   description:
-    "Koustav Manna — Mechanical Engineering student at Jadavpur University. Blockchain Developer, Full Stack Engineer, and AI Engineer specializing in Ethereum, Web Development, and Agentic AI.",
+    "Koustav Manna — software engineer working across three disciplines: full-stack web, Ethereum / smart contracts, and agentic AI systems. Mechanical Engineering at Jadavpur University.",
   keywords: [
     "Koustav Manna",
-    "Portfolio",
+    "Software Engineer",
+    "Full Stack Developer",
     "Blockchain",
     "Ethereum",
-    "Full Stack Developer",
+    "Smart Contracts",
     "Agentic AI",
     "RAG",
-    "Jadavpur University",
     "Next.js",
-    "Web Development",
+    "Jadavpur University",
   ],
   authors: [{ name: "Koustav Manna" }],
   openGraph: {
-    title: "Koustav Manna — Portfolio",
+    title: "Koustav Manna — Software Engineer",
     description:
-      "Blockchain Developer, Full Stack Engineer & AI Engineer. Building the decentralized future.",
+      "Full-stack web, Ethereum smart contracts, and agentic AI systems. One engineer, three disciplines.",
     type: "website",
   },
 };
@@ -34,42 +34,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="dark">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
-          rel="stylesheet"
-        />
       </head>
-      <body className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] antialiased">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem={false}
-          disableTransitionOnChange={false}
-        >
-          {/* Scan line effect - dark mode only */}
-          <div className="dark:block hidden scan-line" />
-
-          <div className="relative min-h-screen flex flex-col">
-            <Navbar />
-            <main className="relative flex-1">{children}</main>
-            <footer className="border-t border-[var(--border-color)] py-8 mt-20">
-              <div className="max-w-7xl mx-auto px-6 text-center space-y-2">
-                <p className="font-mono text-xs text-[var(--text-muted)]">
-                  <span className="text-[var(--accent-cyan)]">$</span>{" "}
-                  echo &quot;built with Next.js + FastAPI by{" "}
-                  <span className="text-[var(--accent-green)]">Koustav Manna</span>&quot;
-                </p>
-                <p className="font-mono text-xs text-[var(--text-muted)] opacity-50">
-                  © {new Date().getFullYear()} — All rights reserved
-                </p>
-              </div>
-            </footer>
-          </div>
-        </ThemeProvider>
+      <body className="min-h-screen bg-bg text-fg antialiased">
+        <div className="relative flex min-h-screen flex-col">
+          <Navbar />
+          <main className="relative flex-1">{children}</main>
+          <SiteFooter />
+        </div>
       </body>
     </html>
   );
