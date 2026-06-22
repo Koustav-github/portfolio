@@ -4,6 +4,8 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowUpRight, Mail, Linkedin, GitBranchIcon, XIcon, Twitter } from "lucide-react";
 import Reveal, { fadeUp, stagger } from "@/components/Reveal";
+import ParallaxPortrait from "@/components/ParallaxPortrait";
+import WorkspaceBackdrop from "@/components/WorkspaceBackdrop";
 
 /* ── Data ─────────────────────────────────────────────────── */
 const disciplines = [
@@ -34,9 +36,9 @@ const disciplines = [
 ];
 
 const meta = [
-  { k: "Role", v: "Software Engineer" },
-  { k: "Focus", v: "Web · Chain · AI" },
-  { k: "Based", v: "Jadavpur University, IN" },
+  { k: "Role", v: "Software Engineer"},
+  { k: "Focus", v: "Web · Blockchain · AI" },
+  { k: "Based", v: "Jadavpur University, KOL, IN" },
 ];
 
 const stackGroups = [
@@ -61,11 +63,12 @@ export default function HomePage() {
       {/* ── Hero ──────────────────────────────────────────── */}
       <section className="relative overflow-hidden">
         <div className="bg-grid pointer-events-none absolute inset-0 opacity-60" />
-        <div className="relative mx-auto max-w-shell wrap-gutter pb-20 pt-36 sm:pt-44">
+        <WorkspaceBackdrop />
+        <div className="relative z-10 mx-auto max-w-shell wrap-gutter pb-20 pt-36 sm:pt-44">
           <motion.div variants={stagger(0.09, 0.05)} initial="hidden" animate="show">
             <motion.p variants={fadeUp} className="eyebrow mb-7 flex items-center gap-2">
               <span className="live-dot h-1.5 w-1.5 rounded-full bg-chain2" />
-              Open to work · Software Engineer · AI/ML Engineer · Blockchain Developer
+              Open to work · Software Engineer
             </motion.p>
 
             <motion.h1
@@ -121,7 +124,48 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Index (signature) ─────────────────────────────── */}
+
+      {/* ── About (faint parallax portrait) ───────────────── */}
+      <section className="relative overflow-hidden border-y border-line">
+        <ParallaxPortrait src="/avatar.png" opacity={0.14} />
+        <Reveal as="div" className="relative z-10 mx-auto max-w-shell wrap-gutter py-24 sm:py-28">
+          <motion.div variants={fadeUp} className="max-w-xl">
+            <h2 className="eyebrow mb-6">About</h2>
+            <p className="font-display text-2xl leading-tight text-fg sm:text-3xl">
+              A mechanical engineering student who builds software, working where
+              the web, blockchains, and AI overlap.
+            </p>
+            <div className="mt-6 space-y-4 text-pretty leading-relaxed text-fg-mute">
+              <p>
+                I&apos;m studying Mechanical Engineering at Jadavpur University, but my
+                work lives in code. I write smart contracts on Ethereum, ship
+                production web apps with Next.js, and design agentic AI systems with
+                LangGraph and RAG.
+              </p>
+              <p>
+                The engineering background is the through-line: I approach problems
+                with systems thinking and reason from first principles, whether the
+                target is a gas-optimized contract or a retrieval pipeline.
+              </p>
+            </div>
+
+            <dl className="mt-10 flex flex-wrap gap-x-10 gap-y-5">
+              {[
+                { n: "3", l: "Disciplines" },
+                { n: "10+", l: "Projects" },
+                { n: "18+", l: "Tools" },
+              ].map((s) => (
+                <div key={s.l}>
+                  <dt className="font-display text-3xl text-fg">{s.n}</dt>
+                  <dd className="eyebrow mt-1.5">{s.l}</dd>
+                </div>
+              ))}
+            </dl>
+          </motion.div>
+        </Reveal>
+      </section>
+
+{/* ── Index (signature) ─────────────────────────────── */}
       <Reveal id="index" className="mx-auto max-w-shell wrap-gutter py-20">
         <motion.div variants={fadeUp} className="mb-10 flex items-baseline justify-between">
           <h2 className="eyebrow">Index — Disciplines</h2>
@@ -160,45 +204,6 @@ export default function HomePage() {
               </Link>
             </motion.div>
           ))}
-        </div>
-      </Reveal>
-
-      {/* ── About + stats ─────────────────────────────────── */}
-      <Reveal className="mx-auto max-w-shell wrap-gutter py-20">
-        <div className="grid gap-14 lg:grid-cols-[1.4fr_1fr]">
-          <motion.div variants={fadeUp}>
-            <h2 className="eyebrow mb-6">About</h2>
-            <p className="font-display text-2xl leading-tight text-fg sm:text-3xl">
-              A mechanical engineering student who builds software, working where
-              the web, blockchains, and AI overlap.
-            </p>
-            <div className="mt-6 space-y-4 text-pretty leading-relaxed text-fg-mute">
-              <p>
-                I&apos;m studying Mechanical Engineering at Jadavpur University, but my
-                work lives in code. I write smart contracts on Ethereum, ship
-                production web apps with Next.js, and design agentic AI systems with
-                LangGraph and RAG.
-              </p>
-              <p>
-                The engineering background is the through-line: I approach problems
-                with systems thinking and reason from first principles, whether the
-                target is a gas-optimized contract or a retrieval pipeline.
-              </p>
-            </div>
-          </motion.div>
-
-          <motion.div variants={fadeUp} className="grid grid-cols-3 gap-px overflow-hidden self-start rounded-[4px] border border-line bg-line">
-            {[
-              { n: "3", l: "Disciplines" },
-              { n: "10+", l: "Projects" },
-              { n: "18+", l: "Tools" },
-            ].map((s) => (
-              <div key={s.l} className="bg-bg px-4 py-7 text-center">
-                <div className="font-display text-4xl text-fg">{s.n}</div>
-                <div className="eyebrow mt-2">{s.l}</div>
-              </div>
-            ))}
-          </motion.div>
         </div>
       </Reveal>
 

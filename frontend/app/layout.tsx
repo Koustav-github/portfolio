@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import SiteFooter from "@/components/SiteFooter";
+import MotionProvider from "@/components/MotionProvider";
+import SmoothScroll from "@/components/SmoothScroll";
+import Loader from "@/components/Loader";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -41,11 +44,16 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body className="min-h-screen bg-bg text-fg antialiased">
-        <div className="relative flex min-h-screen flex-col">
-          <Navbar />
-          <main className="relative flex-1">{children}</main>
-          <SiteFooter />
-        </div>
+        <Loader />
+        <MotionProvider>
+          <SmoothScroll>
+            <div className="relative flex min-h-screen flex-col">
+              <Navbar />
+              <main className="relative flex-1">{children}</main>
+              <SiteFooter />
+            </div>
+          </SmoothScroll>
+        </MotionProvider>
       </body>
     </html>
   );
