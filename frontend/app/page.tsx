@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, ArrowUpRight, Mail, Linkedin, GitBranchIcon } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Mail, Linkedin, GitBranchIcon, XIcon, Twitter } from "lucide-react";
 import Reveal, { fadeUp, stagger } from "@/components/Reveal";
 
 /* ── Data ─────────────────────────────────────────────────── */
@@ -51,7 +51,7 @@ const contacts = [
   { label: "GitHub", value: "Koustav Manna", href: "https://www.github.com/Koustav-github", icon: GitBranchIcon },
   { label: "Email", value: "koustav.2005.manna@gmail.com", href: "mailto:koustav.2005.manna@gmail.com", icon: Mail },
   { label: "LinkedIn", value: "Koustav Manna", href: "https://www.linkedin.com/in/koustav-manna-b6a64330b/", icon: Linkedin },
-  { label: "X", value: "Koustav Manna", href: "https://x.com/KoustavMan51112", icon: ArrowUpRight },
+  { label: "X", value: "Koustav Manna", href: "https://x.com/KoustavMan51112", icon: Twitter },
 ];
 
 /* ── Page ─────────────────────────────────────────────────── */
@@ -65,7 +65,7 @@ export default function HomePage() {
           <motion.div variants={stagger(0.09, 0.05)} initial="hidden" animate="show">
             <motion.p variants={fadeUp} className="eyebrow mb-7 flex items-center gap-2">
               <span className="live-dot h-1.5 w-1.5 rounded-full bg-chain2" />
-              Open to work · Software Engineer
+              Open to work · Software Engineer · AI/ML Engineer · Blockchain Developer
             </motion.p>
 
             <motion.h1

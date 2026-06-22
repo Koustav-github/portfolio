@@ -43,7 +43,7 @@ export default function Navbar() {
             KM
           </span>
           <span className="font-mono text-[13px] text-fg-mute transition-colors group-hover:text-fg">
-            koustav<span className="text-fg-faint">.manna</span>
+            Koustav<span className="text-fg-faint"> Manna</span>
           </span>
         </Link>
 
@@ -67,7 +67,6 @@ export default function Navbar() {
                     )}
                     style={{ background: l.dot }}
                   />
-                  <span className="tabular-nums text-fg-faint">{l.idx}</span>
                   {l.label}
                 </Link>
               </li>
@@ -105,7 +104,6 @@ export default function Navbar() {
                   )}
                 >
                   <span className="h-1.5 w-1.5 rounded-full" style={{ background: l.dot }} />
-                  <span className="tabular-nums text-fg-faint">{l.idx}</span>
                   {l.label}
                 </Link>
               </li>

@@ -19,9 +19,10 @@ export const metadata: Metadata = {
     "Next.js",
     "Jadavpur University",
   ],
+  icons: "/avatar.png",
   authors: [{ name: "Koustav Manna" }],
   openGraph: {
-    title: "Koustav Manna — Software Engineer",
+    title: "Koustav Manna",
     description:
       "Full-stack web, Ethereum smart contracts, and agentic AI systems. One engineer, three disciplines.",
     type: "website",
