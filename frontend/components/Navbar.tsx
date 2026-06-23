@@ -9,9 +9,9 @@ import { clsx } from "clsx";
 
 const links = [
   { href: "/", label: "Index", dot: "var(--fg-faint)" },
-  { href: "/webdev", label: "Web", dot: "var(--web)" },
-  { href: "/blockchain", label: "Chain", dot: "var(--chain)" },
-  { href: "/agentic-ai", label: "Agents", dot: "var(--ai)" },
+  { href: "/webdev", label: "WebDev", dot: "var(--web)" },
+  { href: "/blockchain", label: "Blockchain", dot: "var(--chain)" },
+  { href: "/agentic-ai", label: "AI/ML", dot: "var(--ai)" },
 ];
 
 export default function Navbar() {

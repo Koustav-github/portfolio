@@ -8,6 +8,7 @@ import {
 import Reveal, { fadeUp, stagger } from "@/components/Reveal";
 import CodeBlock from "@/components/CodeBlock";
 import ProjectCard from "@/components/ProjectCard";
+import AmbientVideo from "@/components/AmbientVideo";
 
 const accentVars = {
   ["--accent" as string]: "#d6a84a",
@@ -110,7 +111,18 @@ export default function BlockchainPage() {
       {/* ── Hero ──────────────────────────────────────────── */}
       <section className="relative overflow-hidden border-b border-line">
         <div className="bg-grid pointer-events-none absolute inset-0 opacity-50" />
-        <div className="relative mx-auto max-w-shell wrap-gutter pb-16 pt-32 sm:pt-40">
+        {/* faint ambient video, anchored to the end of the hero */}
+        <AmbientVideo
+          src="/Blockchain.mp4"
+          className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-[58%] w-full object-cover opacity-[0.15]"
+          style={{
+            WebkitMaskImage:
+              "linear-gradient(to top, transparent 2%, #000 30%, #000 80%, transparent 100%)",
+            maskImage:
+              "linear-gradient(to top, transparent 2%, #000 30%, #000 80%, transparent 100%)",
+          }}
+        />
+        <div className="relative z-10 mx-auto max-w-shell wrap-gutter pb-16 pt-32 sm:pt-40">
           <motion.div variants={stagger(0.08, 0.05)} initial="hidden" animate="show">
             <motion.div variants={fadeUp}>
               <Link href="/" className="inline-flex items-center gap-2 font-mono text-xs text-fg-faint transition-colors hover:text-fg">

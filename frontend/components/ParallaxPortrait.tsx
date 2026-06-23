@@ -5,15 +5,19 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useEffect } from "react";
 
 /**
- * Faint background portrait that drifts with the pointer.
- * Decorative only (aria-hidden). Honors reduced-motion by staying still.
+ * Faint background image that drifts with the pointer.
+ * `align="right"` bleeds in from the right with a left fade;
+ * `align="center"` sits in the middle with a radial fade on all edges.
+ * Decorative (aria-hidden). Honors reduced-motion by staying still.
  */
 export default function ParallaxPortrait({
-  src = "/avatar2.png",
+  src = "/avatar.png",
   opacity = 0.14,
+  align = "right",
 }: {
   src?: string;
   opacity?: number;
+  align?: "right" | "center";
 }) {
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
@@ -33,30 +37,33 @@ export default function ParallaxPortrait({
     return () => window.removeEventListener("mousemove", onMove);
   }, [mx, my]);
 
+  const center = align === "center";
+  const mask = center
+    ? "radial-gradient(ellipse 58% 64% at 50% 46%, #000 30%, transparent 80%)"
+    : "linear-gradient(to left, #000 0%, #000 32%, transparent 82%)";
+
   return (
     <div
       aria-hidden
-      className="pointer-events-none absolute inset-y-0 right-0 w-full overflow-hidden sm:w-[70%] lg:w-[56%]"
+      className={
+        center
+          ? "pointer-events-none absolute inset-0 overflow-hidden"
+          : "pointer-events-none absolute inset-y-0 right-0 w-full overflow-hidden sm:w-[70%] lg:w-[56%]"
+      }
     >
       {/* drifting layer */}
       <motion.div style={{ x, y }} className="absolute inset-[-7%]">
         <div
           className="relative h-full w-full grayscale"
-          style={{
-            opacity,
-            WebkitMaskImage:
-              "linear-gradient(to left, #000 0%, #000 32%, transparent 82%)",
-            maskImage:
-              "linear-gradient(to left, #000 0%, #000 32%, transparent 82%)",
-          }}
+          style={{ opacity, WebkitMaskImage: mask, maskImage: mask }}
         >
           <Image
             src={src}
             alt=""
             fill
             priority
-            sizes="60vw"
-            className="object-cover object-[60%_top]"
+            sizes={center ? "100vw" : "60vw"}
+            className={center ? "object-cover object-center" : "object-cover object-[60%_top]"}
           />
         </div>
       </motion.div>
