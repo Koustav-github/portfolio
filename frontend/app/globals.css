@@ -127,6 +127,65 @@ body {
 }
 .card:hover { border-color: var(--line-strong); }
 
+/* ── Frosted glass card (stack) — themed via --c ─────────── */
+.glass {
+  position: relative;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.035);
+  backdrop-filter: blur(14px) saturate(125%);
+  -webkit-backdrop-filter: blur(14px) saturate(125%);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s,
+    box-shadow 0.35s, background 0.35s;
+  outline: none;
+}
+.glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.07), transparent 42%);
+  pointer-events: none;
+}
+.glass:hover,
+.glass:focus-visible,
+.glass:focus-within {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: color-mix(in srgb, var(--c, var(--fg)) 50%, transparent);
+  box-shadow: 0 20px 50px -22px rgba(0, 0, 0, 0.8),
+    0 0 0 1px color-mix(in srgb, var(--c, var(--fg)) 16%, transparent),
+    0 14px 46px -18px color-mix(in srgb, var(--c, var(--fg)) 42%, transparent);
+}
+
+/* tech token, colored by the card's --c */
+.tech {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.01em;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  color: var(--c, var(--fg));
+  border: 1px solid color-mix(in srgb, var(--c, var(--fg)) 24%, transparent);
+  background: color-mix(in srgb, var(--c, var(--fg)) 8%, transparent);
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+.tech::before {
+  content: "";
+  width: 0.3rem;
+  height: 0.3rem;
+  border-radius: 99px;
+  background: var(--c, var(--fg));
+}
+.glass:hover .tech,
+.glass:focus-within .tech {
+  background: color-mix(in srgb, var(--c, var(--fg)) 14%, transparent);
+  border-color: color-mix(in srgb, var(--c, var(--fg)) 40%, transparent);
+}
+
 /* chip / tag */
 .chip {
   display: inline-flex; align-items: center; gap: 0.4rem;
@@ -143,6 +202,39 @@ body {
 /* ── Custom cursor (hide native pointer when active) ─────── */
 .cursor-none,
 .cursor-none * { cursor: none !important; }
+
+/* ── 3D flip menu items (dice/cube hover) ────────────────── */
+.flip { display: inline-block; perspective: 600px; }
+.flip__inner {
+  position: relative;
+  display: inline-block;
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.flip__face { display: block; backface-visibility: hidden; }
+.flip__face--front { transform: translateZ(0.5em); }
+.flip__face--back {
+  position: absolute;
+  inset: 0;
+  transform: rotateX(90deg) translateZ(0.5em);
+  color: var(--flip-light, var(--fg));
+}
+/* a hover on the item (or its enclosing group) rotates the cube */
+.flip:hover .flip__inner,
+a:hover .flip__inner,
+button:hover .flip__inner,
+.group:hover .flip__inner { transform: rotateX(-90deg); }
+
+@media (prefers-reduced-motion: reduce) {
+  .flip__inner { transition: none; }
+}
+
+/* ── Focus-peek: blur/dim siblings, keep the hovered item sharp ── */
+.focus-peek > * { transition: filter 0.35s ease, opacity 0.35s ease; }
+@media (hover: hover) {
+  .focus-peek:hover > * { filter: blur(2px) brightness(0.55); }
+  .focus-peek:hover > *:hover { filter: none; }
+}
 
 /* ── Focus ───────────────────────────────────────────────── */
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 1px; }

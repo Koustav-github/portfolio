@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { motion } from "framer-motion";
 import { clsx } from "clsx";
+import FlipText from "./FlipText";
 
 const links = [
   { href: "/", label: "Index", dot: "var(--fg-faint)" },
@@ -52,7 +53,7 @@ export default function Navbar() {
           </Link>
 
           {/* desktop */}
-          <ul className="hidden items-center gap-1 md:flex">
+          <ul className="focus-peek hidden items-center gap-1 md:flex">
             {links.map((l) => {
               const active = isActive(l.href);
               return (
@@ -83,7 +84,7 @@ export default function Navbar() {
                       )}
                       style={{ background: l.dot }}
                     />
-                    {l.label}
+                    <FlipText label={l.label} light={l.dot} />
                   </Link>
                 </li>
               );
@@ -120,7 +121,7 @@ export default function Navbar() {
                     )}
                   >
                     <span className="h-1.5 w-1.5 rounded-full" style={{ background: l.dot }} />
-                    {l.label}
+                    <FlipText label={l.label} light={l.dot} />
                   </Link>
                 </li>
               );

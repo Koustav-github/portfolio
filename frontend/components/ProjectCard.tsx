@@ -1,6 +1,7 @@
 "use client";
 
 import { ExternalLink, Github } from "lucide-react";
+import FlipText from "./FlipText";
 
 interface ProjectCardProps {
   index: number;
@@ -48,8 +49,8 @@ export default function ProjectCard({
         </div>
       </div>
 
-      <h3 className="font-display text-xl text-fg transition-colors duration-300 group-hover:text-accent">
-        {title}
+      <h3 className="font-display text-xl text-fg">
+        <FlipText label={title} light="var(--accent)" />
       </h3>
 
       <p className="mt-2.5 flex-1 text-sm leading-relaxed text-fg-mute">{description}</p>

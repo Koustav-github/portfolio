@@ -4,10 +4,12 @@ import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 const WORDS = ["webdev", "blockchain", "ai/ml"];
+const TRAVEL = 32; // knob travel: track(64) - padding(8) - knob(24)
 
 export default function Loader() {
   const [done, setDone] = useState(false);
   const [reduced, setReduced] = useState(false);
+  const [on, setOn] = useState(false);
 
   const finish = useCallback(() => {
     setDone(true);
@@ -38,14 +40,23 @@ export default function Loader() {
     }
 
     document.body.style.overflow = "hidden";
-    const ms = prefersReduced ? 350 : 1500;
-    const main = window.setTimeout(finish, ms);
-    // safety net: never let the curtain hang
-    const fallback = window.setTimeout(finish, 4000);
 
+    if (prefersReduced) {
+      setOn(true);
+      const t = window.setTimeout(finish, 450);
+      return () => {
+        window.clearTimeout(t);
+        document.body.style.overflow = "";
+      };
+    }
+
+    // flip the switch on after the intro settles, then leave the toggle
+    // fully visible for a beat before lifting the curtain.
+    const flip = window.setTimeout(() => setOn(true), 550);
+    const close = window.setTimeout(finish, 1700);
     return () => {
-      window.clearTimeout(main);
-      window.clearTimeout(fallback);
+      window.clearTimeout(flip);
+      window.clearTimeout(close);
       document.body.style.overflow = "";
     };
   }, [finish]);
@@ -85,26 +96,46 @@ export default function Loader() {
 
             <div className="mt-5 flex items-center gap-2 font-mono text-[11px] uppercase tracking-widest2 text-fg-faint">
               {WORDS.map((w, i) => (
-                <motion.span
-                  key={w}
-                  initial={{ opacity: 0.25 }}
-                  animate={{ opacity: [0.25, 1, 0.25] }}
-                  transition={{ duration: 1.2, repeat: Infinity, delay: i * 0.2 }}
-                >
+                <span key={w}>
                   {w}
                   {i < WORDS.length - 1 && <span className="ml-2 text-line-strong">·</span>}
-                </motion.span>
+                </span>
               ))}
             </div>
 
-            {/* progress line */}
-            <div className="mt-7 h-px w-44 overflow-hidden bg-line">
+            {/* toggle — flips on, then the curtain lifts */}
+            <div className="mt-8 flex items-center gap-3">
+              <span
+                className="font-mono text-[10px] uppercase tracking-widest2 transition-colors"
+                style={{ color: on ? "var(--fg-faint)" : "var(--fg-mute)" }}
+              >
+                off
+              </span>
+
               <motion.div
-                className="h-full bg-fg"
-                initial={{ width: "0%" }}
-                animate={{ width: "100%" }}
-                transition={{ duration: reduced ? 0.3 : 1.3, ease: "easeInOut" }}
-              />
+                className="relative flex h-8 w-16 items-center rounded-full border border-line-strong p-1"
+                animate={{ backgroundColor: on ? "var(--fg)" : "rgba(0,0,0,0)" }}
+                transition={{ duration: 0.45, ease: "easeInOut" }}
+              >
+                <motion.span
+                  className="block h-6 w-6 rounded-full"
+                  style={{ background: on ? "var(--bg)" : "var(--fg-mute)" }}
+                  initial={{ x: 0 }}
+                  animate={{ x: on ? TRAVEL : 0 }}
+                  transition={
+                    reduced
+                      ? { duration: 0 }
+                      : { type: "spring", stiffness: 320, damping: 24 }
+                  }
+                />
+              </motion.div>
+
+              <span
+                className="font-mono text-[10px] uppercase tracking-widest2 transition-colors"
+                style={{ color: on ? "var(--fg)" : "var(--fg-faint)" }}
+              >
+                on
+              </span>
             </div>
           </div>
         </motion.div>

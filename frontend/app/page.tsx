@@ -2,10 +2,20 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, ArrowUpRight, Mail, Linkedin, GitBranchIcon, XIcon, Twitter } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Mail, Linkedin, GitBranchIcon } from "lucide-react";
 import Reveal, { fadeUp, stagger } from "@/components/Reveal";
+import FlipText from "@/components/FlipText";
+import StackCard from "@/components/StackCard";
 import ParallaxPortrait from "@/components/ParallaxPortrait";
 import WorkspaceBackdrop from "@/components/WorkspaceBackdrop";
+
+function XIcon({ size = 15 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.632L18.244 2.25Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z" />
+    </svg>
+  );
+}
 
 /* ── Data ─────────────────────────────────────────────────── */
 const disciplines = [
@@ -42,18 +52,18 @@ const meta = [
 ];
 
 const stackGroups = [
-  { label: "Languages", items: ["TypeScript", "Python", "Solidity", "SQL"] },
-  { label: "Web", items: ["Next.js", "React", "Node", "FastAPI", "Tailwind"] },
-  { label: "Chain", items: ["Foundry", "Hardhat", "Ethers.js", "OpenZeppelin"] },
-  { label: "AI", items: ["LangGraph", "LangChain", "pgvector", "OpenAI", "Claude"] },
-  { label: "Infra", items: ["Docker", "Postgres", "Redis", "Vercel", "Git"] },
+  { label: "Languages", color: "var(--fg)", items: ["TypeScript", "Python", "Solidity", "SQL"] },
+  { label: "Web", color: "var(--web)", items: ["Next.js", "React", "Node", "FastAPI", "Tailwind"] },
+  { label: "Chain", color: "var(--chain)", items: ["Foundry", "Hardhat", "Ethers.js", "OpenZeppelin"] },
+  { label: "AI", color: "var(--ai)", items: ["LangGraph", "LangChain", "pgvector", "OpenAI", "Claude"] },
+  { label: "Infra", color: "var(--chain2)", items: ["Docker", "Postgres", "Redis", "Vercel", "Git"] },
 ];
 
 const contacts = [
   { label: "GitHub", value: "Koustav Manna", href: "https://www.github.com/Koustav-github", icon: GitBranchIcon },
   { label: "Email", value: "koustav.2005.manna@gmail.com", href: "mailto:koustav.2005.manna@gmail.com", icon: Mail },
   { label: "LinkedIn", value: "Koustav Manna", href: "https://www.linkedin.com/in/koustav-manna-b6a64330b/", icon: Linkedin },
-  { label: "X", value: "Koustav Manna", href: "https://x.com/KoustavMan51112", icon: Twitter },
+  { label: "X", value: "Koustav Manna", href: "https://x.com/KoustavMan51112", icon: XIcon },
 ];
 
 /* ── Page ─────────────────────────────────────────────────── */
@@ -101,10 +111,11 @@ export default function HomePage() {
 
             <motion.div variants={fadeUp} className="mt-10 flex flex-wrap items-center gap-3">
               <a href="#index" className="btn btn-solid">
-                Browse the work <ArrowRight size={15} />
+                <FlipText label="Browse the work" light="#0a0a0b" />
+                <ArrowRight size={15} />
               </a>
               <a href="#contact" className="btn btn-ghost">
-                Get in touch
+                <FlipText label="Get in touch" light="var(--fg)" />
               </a>
             </motion.div>
 
@@ -172,7 +183,7 @@ export default function HomePage() {
           <span className="font-mono text-xs text-fg-faint">3 / threads</span>
         </motion.div>
 
-        <div className="border-t border-line">
+        <div className="focus-peek border-t border-line">
           {disciplines.map((d) => (
             <motion.div key={d.href} variants={fadeUp} style={{ ["--accent" as string]: d.accent }}>
               <Link
@@ -185,8 +196,8 @@ export default function HomePage() {
                   {d.idx}
                 </span>
 
-                <h3 className="font-display text-3xl text-fg transition-colors duration-300 group-hover:text-accent sm:text-4xl">
-                  {d.name}
+                <h3 className="font-display text-3xl text-fg sm:text-4xl">
+                  <FlipText label={d.name} light={d.accent} />
                 </h3>
 
                 <p className="col-span-2 max-w-md text-sm leading-relaxed text-fg-mute sm:col-span-1 sm:max-w-none">
@@ -210,19 +221,10 @@ export default function HomePage() {
       {/* ── Stack ─────────────────────────────────────────── */}
       <Reveal className="mx-auto max-w-shell wrap-gutter py-20">
         <motion.h2 variants={fadeUp} className="eyebrow mb-10">Stack</motion.h2>
-        <div className="divide-y divide-line border-y border-line">
+        <div className="focus-peek grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {stackGroups.map((g) => (
-            <motion.div
-              key={g.label}
-              variants={fadeUp}
-              className="grid grid-cols-1 gap-4 py-5 sm:grid-cols-[8rem_1fr] sm:items-center"
-            >
-              <span className="font-mono text-sm text-fg-faint">{g.label}</span>
-              <div className="flex flex-wrap gap-1.5">
-                {g.items.map((i) => (
-                  <span key={i} className="chip">{i}</span>
-                ))}
-              </div>
+            <motion.div key={g.label} variants={fadeUp}>
+              <StackCard title={g.label} items={g.items} color={g.color} />
             </motion.div>
           ))}
         </div>
@@ -242,7 +244,7 @@ export default function HomePage() {
             </p>
           </motion.div>
 
-          <motion.div variants={fadeUp} className="border-t border-line">
+          <motion.div variants={fadeUp} className="focus-peek border-t border-line">
             {contacts.map((c) => {
               const Icon = c.icon;
               return (
@@ -256,7 +258,9 @@ export default function HomePage() {
                   <Icon size={18} className="text-fg-faint transition-colors group-hover:text-fg" />
                   <div className="min-w-0 flex-1">
                     <div className="eyebrow mb-0.5">{c.label}</div>
-                    <div className="truncate font-mono text-sm text-fg">{c.value}</div>
+                    <div className="font-mono text-sm text-fg-mute">
+                      <FlipText label={c.value} light="var(--fg)" />
+                    </div>
                   </div>
                   <ArrowUpRight size={16} className="text-fg-faint transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-fg" />
                 </a>

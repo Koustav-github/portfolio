@@ -9,6 +9,7 @@ import Reveal, { fadeUp, stagger } from "@/components/Reveal";
 import CodeBlock from "@/components/CodeBlock";
 import ProjectCard from "@/components/ProjectCard";
 import ParallaxPortrait from "@/components/ParallaxPortrait";
+import StackCard from "@/components/StackCard";
 
 const accentVars = {
   ["--accent" as string]: "#5ea9d6",
@@ -114,23 +115,12 @@ export default function WebDevPage() {
       {/* ── Stack ─────────────────────────────────────────── */}
       <Reveal className="mx-auto max-w-shell wrap-gutter py-20">
         <motion.h2 variants={fadeUp} className="eyebrow mb-10">Stack</motion.h2>
-        <div className="grid gap-px overflow-hidden rounded-[4px] border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
-          {stack.map((s) => {
-            const Icon = s.icon;
-            return (
-              <motion.div key={s.group} variants={fadeUp} className="bg-bg p-6">
-                <div className="mb-5 flex items-center gap-2.5">
-                  <Icon size={16} style={{ color: "var(--accent)" }} />
-                  <span className="font-mono text-sm text-fg">{s.group}</span>
-                </div>
-                <div className="flex flex-wrap gap-1.5">
-                  {s.items.map((i) => (
-                    <span key={i} className="chip">{i}</span>
-                  ))}
-                </div>
-              </motion.div>
-            );
-          })}
+        <div className="focus-peek grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {stack.map((s) => (
+            <motion.div key={s.group} variants={fadeUp}>
+              <StackCard title={s.group} items={s.items} color="var(--accent)" icon={s.icon} />
+            </motion.div>
+          ))}
         </div>
       </Reveal>
 
@@ -170,7 +160,7 @@ export default function WebDevPage() {
           <h2 className="eyebrow">Selected work</h2>
           <span className="font-mono text-xs text-fg-faint">{projects.length} projects</span>
         </motion.div>
-        <div className="grid gap-5 sm:grid-cols-2">
+        <div className="focus-peek grid gap-5 sm:grid-cols-2">
           {projects.map((p, i) => (
             <motion.div key={p.title} variants={fadeUp}>
               <ProjectCard index={i + 1} {...p} />
