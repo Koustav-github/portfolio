@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-const WORDS = ["web", "chain", "ai"];
+const WORDS = ["webdev", "blockchain", "ai/ml"];
 
 export default function Loader() {
   const [done, setDone] = useState(false);

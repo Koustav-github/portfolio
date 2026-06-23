@@ -8,6 +8,7 @@ import {
 import Reveal, { fadeUp, stagger } from "@/components/Reveal";
 import CodeBlock from "@/components/CodeBlock";
 import ProjectCard from "@/components/ProjectCard";
+import ParallaxPortrait from "@/components/ParallaxPortrait";
 
 const accentVars = {
   ["--accent" as string]: "#5ea9d6",
@@ -69,7 +70,9 @@ export default function WebDevPage() {
       {/* ── Hero ──────────────────────────────────────────── */}
       <section className="relative overflow-hidden border-b border-line">
         <div className="bg-grid pointer-events-none absolute inset-0 opacity-50" />
-        <div className="relative mx-auto max-w-shell wrap-gutter pb-16 pt-32 sm:pt-40">
+        {/* centered parallax backdrop, a touch more visible than the video */}
+        <ParallaxPortrait src="/webdev.png" opacity={0.24} align="center" />
+        <div className="relative z-10 mx-auto max-w-shell wrap-gutter pb-16 pt-32 sm:pt-40">
           <motion.div variants={stagger(0.08, 0.05)} initial="hidden" animate="show">
             <motion.div variants={fadeUp}>
               <Link href="/" className="inline-flex items-center gap-2 font-mono text-xs text-fg-faint transition-colors hover:text-fg">

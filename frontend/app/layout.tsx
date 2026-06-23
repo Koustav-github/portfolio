@@ -4,6 +4,7 @@ import SiteFooter from "@/components/SiteFooter";
 import MotionProvider from "@/components/MotionProvider";
 import SmoothScroll from "@/components/SmoothScroll";
 import Loader from "@/components/Loader";
+import Cursor from "@/components/Cursor";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -45,6 +46,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen bg-bg text-fg antialiased">
         <Loader />
+        <Cursor />
         <MotionProvider>
           <SmoothScroll>
             <div className="relative flex min-h-screen flex-col">
