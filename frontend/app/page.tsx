@@ -78,7 +78,7 @@ export default function HomePage() {
           <motion.div variants={stagger(0.09, 0.05)} initial="hidden" animate="show">
             <motion.p variants={fadeUp} className="eyebrow mb-7 flex items-center gap-2">
               <span className="live-dot h-1.5 w-1.5 rounded-full bg-chain2" />
-              Open to work · Software Engineer
+              Open to work · Software Developer
             </motion.p>
 
             <motion.h1
@@ -104,7 +104,7 @@ export default function HomePage() {
               </Link>
               , and{" "}
               <Link href="/others" className="text-fg underline decoration-chain decoration-2 underline-offset-4 transition-colors hover:text-chain">
-                systems &amp; smart contracts
+                System Design
               </Link>
               .
             </motion.p>
@@ -143,7 +143,7 @@ export default function HomePage() {
           <motion.div variants={fadeUp} className="max-w-xl">
             <h2 className="eyebrow mb-6">About</h2>
             <p className="font-display text-2xl leading-tight text-fg sm:text-3xl">
-              An Undergrad who builds software, working where
+              An Undergrad who builds software. Working where
               the Web Development and AI overlap.
             </p>
             <div className="mt-6 space-y-4 text-pretty leading-relaxed text-fg-mute">
