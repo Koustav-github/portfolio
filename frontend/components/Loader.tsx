@@ -106,32 +106,33 @@ export default function Loader() {
             {/* toggle — flips on, then the curtain lifts */}
             <div className="mt-8 flex items-center gap-3">
               <span
-                className="font-mono text-[10px] uppercase tracking-widest2 transition-colors"
+                className="font-mono text-[10px] uppercase tracking-widest2 transition-colors duration-300"
                 style={{ color: on ? "var(--fg-faint)" : "var(--fg-mute)" }}
               >
                 off
               </span>
 
-              <motion.div
+              <div
                 className="relative flex h-8 w-16 items-center rounded-full border border-line-strong p-1"
-                animate={{ backgroundColor: on ? "var(--fg)" : "rgba(0,0,0,0)" }}
-                transition={{ duration: 0.45, ease: "easeInOut" }}
+                style={{
+                  background: on ? "var(--fg)" : "transparent",
+                  transition: "background 0.45s ease",
+                }}
               >
-                <motion.span
+                <span
                   className="block h-6 w-6 rounded-full"
-                  style={{ background: on ? "var(--bg)" : "var(--fg-mute)" }}
-                  initial={{ x: 0 }}
-                  animate={{ x: on ? TRAVEL : 0 }}
-                  transition={
-                    reduced
-                      ? { duration: 0 }
-                      : { type: "spring", stiffness: 320, damping: 24 }
-                  }
+                  style={{
+                    background: on ? "var(--bg)" : "var(--fg-mute)",
+                    transform: on ? `translateX(${TRAVEL}px)` : "translateX(0)",
+                    transition: reduced
+                      ? "none"
+                      : "transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.45s ease",
+                  }}
                 />
-              </motion.div>
+              </div>
 
               <span
-                className="font-mono text-[10px] uppercase tracking-widest2 transition-colors"
+                className="font-mono text-[10px] uppercase tracking-widest2 transition-colors duration-300"
                 style={{ color: on ? "var(--fg)" : "var(--fg-faint)" }}
               >
                 on
