@@ -29,25 +29,25 @@ const disciplines = [
   },
   {
     idx: "02",
-    href: "/blockchain",
-    name: "Blockchain",
-    accent: "var(--chain)",
-    blurb: "Solidity smart contracts and DeFi protocols on Ethereum and EVM-compatible chains.",
-    stack: ["Solidity", "Ethereum", "Foundry", "DeFi", "Web3"],
+    href: "/ai-ml",
+    name: "AI / ML",
+    accent: "var(--ai)",
+    blurb: "Machine learning and deep learning end to end — training neural nets, fine-tuning transformers, RAG and agents.",
+    stack: ["PyTorch", "Deep Learning", "LLMs", "RAG", "Hugging Face"],
   },
   {
     idx: "03",
-    href: "/agentic-ai",
-    name: "Agentic AI",
-    accent: "var(--ai)",
-    blurb: "Autonomous agents and RAG pipelines with LangGraph, vector search, and frontier models.",
-    stack: ["LangGraph", "RAG", "LangChain", "Vector DBs"],
+    href: "/others",
+    name: "Others",
+    accent: "var(--chain)",
+    blurb: "The performance-critical corners — scalable system design, low-latency / HFT systems, and Ethereum smart contracts.",
+    stack: ["System Design", "HFT", "C++", "Solidity", "Distributed"],
   },
 ];
 
 const meta = [
-  { k: "Role", v: "Software Engineer"},
-  { k: "Focus", v: "Web · Blockchain · AI" },
+  { k: "Role", v: "Software Developer"},
+  { k: "Focus", v: "Web · AI/ML · Systems" },
   { k: "Based", v: "Jadavpur University, KOL, IN" },
 ];
 
@@ -96,15 +96,15 @@ export default function HomePage() {
             >
               I build software across three disciplines —{" "}
               <Link href="/webdev" className="text-fg underline decoration-web decoration-2 underline-offset-4 transition-colors hover:text-web">
-                full-stack web
+                Full-Stack WebDev
               </Link>
               ,{" "}
-              <Link href="/blockchain" className="text-fg underline decoration-chain decoration-2 underline-offset-4 transition-colors hover:text-chain">
-                Ethereum smart contracts
+              <Link href="/ai-ml" className="text-fg underline decoration-ai decoration-2 underline-offset-4 transition-colors hover:text-ai">
+                AI &amp; Machine Learning
               </Link>
               , and{" "}
-              <Link href="/agentic-ai" className="text-fg underline decoration-ai decoration-2 underline-offset-4 transition-colors hover:text-ai">
-                autonomous AI agents
+              <Link href="/others" className="text-fg underline decoration-chain decoration-2 underline-offset-4 transition-colors hover:text-chain">
+                systems &amp; smart contracts
               </Link>
               .
             </motion.p>
@@ -143,18 +143,18 @@ export default function HomePage() {
           <motion.div variants={fadeUp} className="max-w-xl">
             <h2 className="eyebrow mb-6">About</h2>
             <p className="font-display text-2xl leading-tight text-fg sm:text-3xl">
-              A mechanical engineering student who builds software, working where
-              the web, blockchains, and AI overlap.
+              An Undergrad who builds software, working where
+              the Web Development and AI overlap.
             </p>
             <div className="mt-6 space-y-4 text-pretty leading-relaxed text-fg-mute">
               <p>
-                I&apos;m studying Mechanical Engineering at Jadavpur University, but my
-                work lives in code. I write smart contracts on Ethereum, ship
-                production web apps with Next.js, and design agentic AI systems with
-                LangGraph and RAG.
+                I&apos;m a Junior at Jadavpur University, my
+                work lives in code. I write, ship
+                production web apps with Next.js and FastAPI, and design Agentic AI systems with
+                LangGraph and RAG and Design System Architecture.
               </p>
               <p>
-                The engineering background is the through-line: I approach problems
+                The Engineering background is the through-line: I approach problems
                 with systems thinking and reason from first principles, whether the
                 target is a gas-optimized contract or a retrieval pipeline.
               </p>
@@ -180,7 +180,6 @@ export default function HomePage() {
       <Reveal id="index" className="mx-auto max-w-shell wrap-gutter py-20">
         <motion.div variants={fadeUp} className="mb-10 flex items-baseline justify-between">
           <h2 className="eyebrow">Index — Disciplines</h2>
-          <span className="font-mono text-xs text-fg-faint">3 / threads</span>
         </motion.div>
 
         <div className="focus-peek border-t border-line">
@@ -239,8 +238,7 @@ export default function HomePage() {
               Have something to build?
             </p>
             <p className="mt-5 max-w-md leading-relaxed text-fg-mute">
-              I&apos;m open to internships, freelance work, and collaborations across
-              web, blockchain, and AI. The fastest way to reach me is email.
+              I&apos;m open to internships, freelance work, and collaborations across Fullstack Web Development, Agentic AI development, System Design Architect. The fastest way to reach me is email.
             </p>
           </motion.div>
 

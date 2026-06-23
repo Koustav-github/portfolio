@@ -8,18 +8,19 @@ import Cursor from "@/components/Cursor";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Koustav Manna — Software Engineer",
+  title: "Koustav Manna — Software Developer",
   description:
-    "Koustav Manna — software engineer working across three disciplines: full-stack web, Ethereum / smart contracts, and agentic AI systems. Mechanical Engineering at Jadavpur University.",
+    "Koustav Manna — software developer working across three disciplines: full-stack web, AI / ML & deep learning, and systems (system design, HFT, blockchain). Jadavpur University.",
   keywords: [
     "Koustav Manna",
-    "Software Engineer",
+    "Software Developer",
     "Full Stack Developer",
+    "Machine Learning",
+    "Deep Learning",
+    "PyTorch",
+    "System Design",
+    "HFT",
     "Blockchain",
-    "Ethereum",
-    "Smart Contracts",
-    "Agentic AI",
-    "RAG",
     "Next.js",
     "Jadavpur University",
   ],
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Koustav Manna",
     description:
-      "Full-stack web, Ethereum smart contracts, and agentic AI systems. One engineer, three disciplines.",
+      "Full-stack web, AI / ML, and systems — system design, HFT, and blockchain. One engineer, three disciplines.",
     type: "website",
   },
 };

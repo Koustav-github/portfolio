@@ -11,8 +11,8 @@ import FlipText from "./FlipText";
 const links = [
   { href: "/", label: "Index", dot: "var(--fg-faint)" },
   { href: "/webdev", label: "WebDev", dot: "var(--web)" },
-  { href: "/blockchain", label: "Blockchain", dot: "var(--chain)" },
-  { href: "/agentic-ai", label: "AI/ML", dot: "var(--ai)" },
+  { href: "/ai-ml", label: "AI/ML", dot: "var(--ai)" },
+  { href: "/others", label: "Others", dot: "var(--chain)" },
 ];
 
 export default function Navbar() {

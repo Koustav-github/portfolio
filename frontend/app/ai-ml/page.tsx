@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
-  ArrowLeft, Bot, Database, Search, FileText, Cpu, MessageSquare,
+  ArrowLeft, Database, Layers, Cpu, LineChart, Server,
 } from "lucide-react";
 import Reveal, { fadeUp, stagger } from "@/components/Reveal";
 import CodeBlock from "@/components/CodeBlock";
@@ -18,100 +18,92 @@ const accentVars = {
 };
 
 const conceptsBar = [
-  { k: "Agent type", v: "ReAct + Graph" },
-  { k: "Memory", v: "Long + short term" },
-  { k: "Orchestration", v: "LangGraph" },
-  { k: "Retrieval", v: "Hybrid search" },
+  { k: "Frameworks", v: "PyTorch · TF" },
+  { k: "Domains", v: "CV · NLP · LLMs" },
+  { k: "Training", v: "GPU · mixed precision" },
+  { k: "Serving", v: "FastAPI · ONNX" },
 ];
 
-const ragSteps = [
-  { icon: FileText, label: "Source docs", desc: "PDFs, URLs, databases" },
-  { icon: Cpu, label: "Chunking", desc: "Semantic splitting + overlap" },
-  { icon: Database, label: "Vector store", desc: "Embeddings + metadata index" },
-  { icon: Search, label: "Hybrid search", desc: "Dense + sparse (BM25)" },
-  { icon: Bot, label: "Generation", desc: "Grounded, cited responses" },
+const lifecycle = [
+  { icon: Database, label: "Data", desc: "Collection, cleaning, versioning" },
+  { icon: Layers, label: "Features", desc: "Transforms + augmentation" },
+  { icon: Cpu, label: "Train", desc: "GPU, schedulers, checkpoints" },
+  { icon: LineChart, label: "Evaluate", desc: "Metrics, validation, ablations" },
+  { icon: Server, label: "Serve", desc: "API, quantization, monitoring" },
 ];
 
-const ragPrinciples = [
-  "Hybrid search (dense + sparse BM25)",
-  "Query decomposition & expansion",
-  "Contextual compression",
-  "Re-ranking with cross-encoders",
-  "Metadata filtering & guardrails",
-  "Streaming responses with citations",
+const principles = [
+  "Reproducible training (seeds + configs)",
+  "Experiment tracking with W&B / MLflow",
+  "Rigorous evaluation, not just accuracy",
+  "Transfer learning & fine-tuning",
+  "Quantization for fast inference",
+  "Monitored, versioned model serving",
 ];
 
 const stack = [
-  { group: "Frameworks", items: ["LangChain", "LangGraph", "LlamaIndex", "CrewAI", "Pydantic AI"] },
-  { group: "Models", items: ["GPT-4o", "Claude", "Gemini", "Mistral", "Groq", "Ollama"] },
-  { group: "Vector DBs", items: ["Pinecone", "Chroma", "Qdrant", "pgvector", "FAISS"] },
-  { group: "MLOps", items: ["Python", "FastAPI", "LangSmith", "W&B", "Hugging Face"] },
+  { group: "Deep Learning", items: ["PyTorch", "TensorFlow", "Keras", "JAX", "CUDA"] },
+  { group: "Classical ML", items: ["scikit-learn", "XGBoost", "pandas", "NumPy", "SciPy"] },
+  { group: "LLMs & Agents", items: ["Hugging Face", "Transformers", "LangChain", "LangGraph", "RAG"] },
+  { group: "MLOps", items: ["FastAPI", "Docker", "ONNX", "W&B", "MLflow"] },
 ];
 
 const projects = [
-  { title: "Multi-Agent Research", description: "Autonomous research agent (LangGraph) that decomposes questions, delegates to sub-agents, and synthesizes cited answers.", tags: ["LangGraph", "OpenAI", "Tavily", "FastAPI"], github: "/", featured: true },
-  { title: "Document RAG Pipeline", description: "Enterprise RAG with hybrid search, re-ranking, and multi-document reasoning over uploaded PDFs.", tags: ["LangChain", "Pinecone", "BM25", "Cohere Rerank"], github: "/" },
-  { title: "Code Review Agent", description: "Agentic reviewer that analyzes PRs, finds bugs, and writes review comments using Claude's extended thinking.", tags: ["Claude", "LangChain", "GitHub API", "Docker"], github: "/" },
-  { title: "Conversational SQL", description: "Natural-language-to-SQL agent that understands schema, generates optimized queries, and explains results.", tags: ["LangChain", "GPT-4o", "SQLAlchemy", "Postgres"], github: "/" },
+  { title: "Image Classifier", description: "A CNN trained from scratch in PyTorch with augmentation and mixed-precision; ~96% top-1 on a 10-class set.", tags: ["PyTorch", "CNN", "CUDA", "Albumentations"], github: "/", featured: true },
+  { title: "Transformer Fine-Tune", description: "Fine-tuned a transformer for sentiment with LoRA, served via a quantized ONNX endpoint for low-latency inference.", tags: ["Hugging Face", "LoRA", "ONNX", "FastAPI"], github: "/" },
+  { title: "Document RAG Pipeline", description: "Retrieval-augmented generation with hybrid search, cross-encoder re-ranking, and grounded, cited answers.", tags: ["LangChain", "pgvector", "BM25", "Rerank"], github: "/" },
+  { title: "Multi-Agent Research", description: "LangGraph agents that decompose questions, delegate to sub-agents, and synthesize cited reports.", tags: ["LangGraph", "OpenAI", "Tavily", "Python"], github: "/" },
 ];
 
 const patterns = [
-  { t: "ReAct Agent", d: "Reason + act loop with tool use and observation cycles." },
-  { t: "Multi-Agent", d: "A supervisor delegates tasks to specialized sub-agents." },
-  { t: "RAG Pipeline", d: "Retrieval-grounded generation with hybrid search." },
-  { t: "Self-Reflection", d: "Agents that critique and refine their own output." },
+  { t: "CNNs", d: "Convolutional nets for image classification and detection." },
+  { t: "Transformers", d: "Attention-based models for language and sequences." },
+  { t: "Transfer Learning", d: "Fine-tuning pretrained backbones on small data." },
+  { t: "RAG & Agents", d: "Grounding and tool-use on top of LLMs." },
 ];
 
-const agentLoop = [
-  { icon: MessageSquare, label: "User query", state: "in" },
-  { icon: Bot, label: "LLM reasoning", state: "run" },
-  { icon: Search, label: "Tool calls", state: "run" },
-  { icon: Database, label: "Vector lookup", state: "run" },
-  { icon: FileText, label: "Final answer", state: "out" },
+const trainLog = [
+  { e: "08/10", loss: "0.214", acc: "94.2%" },
+  { e: "09/10", loss: "0.187", acc: "95.1%" },
+  { e: "10/10", loss: "0.169", acc: "95.8%", best: true },
 ];
 
-const code = `# LangGraph agent with tool calling
-from langchain_openai import ChatOpenAI
-from langchain_core.tools import tool
-from langgraph.graph import StateGraph, END
-from langgraph.prebuilt import ToolNode
-from typing import TypedDict, Annotated
-import operator
+const code = `# CNN image classifier — training step (PyTorch)
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
 
-class AgentState(TypedDict):
-    messages: Annotated[list, operator.add]
+class SmallCNN(nn.Module):
+    def __init__(self, num_classes=10):
+        super().__init__()
+        self.conv1 = nn.Conv2d(3, 32, 3, padding=1)
+        self.conv2 = nn.Conv2d(32, 64, 3, padding=1)
+        self.pool = nn.MaxPool2d(2)
+        self.fc = nn.Linear(64 * 8 * 8, num_classes)
 
-@tool
-def search_web(query: str) -> str:
-    """Search the web for current information."""
-    return f"Results for: {query}"
+    def forward(self, x):
+        x = self.pool(F.relu(self.conv1(x)))
+        x = self.pool(F.relu(self.conv2(x)))
+        x = torch.flatten(x, 1)
+        return self.fc(x)
 
-llm = ChatOpenAI(model="gpt-4o", temperature=0)
-llm_with_tools = llm.bind_tools([search_web])
+model = SmallCNN().to("cuda")
+optimizer = torch.optim.AdamW(model.parameters(), lr=3e-4)
+criterion = nn.CrossEntropyLoss()
 
-def call_model(state: AgentState):
-    response = llm_with_tools.invoke(state["messages"])
-    return {"messages": [response]}
+for images, labels in train_loader:
+    images, labels = images.to("cuda"), labels.to("cuda")
+    optimizer.zero_grad()
+    loss = criterion(model(images), labels)
+    loss.backward()
+    optimizer.step()`;
 
-def should_continue(state: AgentState) -> str:
-    last = state["messages"][-1]
-    return "tools" if last.tool_calls else END
-
-graph = StateGraph(AgentState)
-graph.add_node("agent", call_model)
-graph.add_node("tools", ToolNode([search_web]))
-graph.set_entry_point("agent")
-graph.add_conditional_edges("agent", should_continue)
-graph.add_edge("tools", "agent")
-agent = graph.compile()`;
-
-export default function AgenticAIPage() {
+export default function AiMlPage() {
   return (
     <div className="relative" style={accentVars}>
       {/* ── Hero ──────────────────────────────────────────── */}
       <section className="relative overflow-hidden border-b border-line">
         <div className="bg-grid pointer-events-none absolute inset-0 opacity-50" />
-        {/* faint ambient backdrop, centered, parallax + masked into the page */}
         <ParallaxPortrait src="/aiml.webp" opacity={0.16} align="center" />
         <div className="relative z-10 mx-auto max-w-shell wrap-gutter pb-16 pt-32 sm:pt-40">
           <motion.div variants={stagger(0.08, 0.05)} initial="hidden" animate="show">
@@ -124,27 +116,27 @@ export default function AgenticAIPage() {
             <div className="mt-10 grid items-center gap-12 lg:grid-cols-[1.1fr_1fr]">
               <div>
                 <motion.p variants={fadeUp} className="eyebrow mb-5" style={{ color: "var(--accent)" }}>
-                  Thread 03 — Agentic AI
+                  Thread 02 — AI / ML
                 </motion.p>
                 <motion.h1 variants={fadeUp} className="font-display text-[clamp(2.6rem,8vw,5.5rem)] text-fg">
-                  Agents that
+                  Models that
                   <br />
-                  <span style={{ color: "var(--accent)" }}>reason &amp; act.</span>
+                  <span style={{ color: "var(--accent)" }}>learn &amp; reason.</span>
                 </motion.h1>
                 <motion.p variants={fadeUp} className="mt-7 max-w-lg text-pretty leading-relaxed text-fg-mute">
-                  Autonomous agents that plan and use tools, and RAG pipelines that
-                  ground LLMs in real data. Built with LangGraph, vector search, and
-                  frontier models — for production, not demos.
+                  Machine learning and deep learning end to end — training neural nets,
+                  fine-tuning transformers, and building LLM systems with RAG and
+                  agents. From dataset to a monitored endpoint.
                 </motion.p>
                 <motion.div variants={fadeUp} className="mt-7 flex flex-wrap gap-1.5">
-                  {["LLM Agents", "RAG", "LangGraph", "Vector DBs", "OpenAI", "Claude"].map((t) => (
+                  {["Deep Learning", "PyTorch", "NLP", "Computer Vision", "LLMs", "RAG"].map((t) => (
                     <span key={t} className="chip">{t}</span>
                   ))}
                 </motion.div>
               </div>
 
               <motion.div variants={fadeUp} className="hidden lg:block">
-                <AgentLoopVisual />
+                <TrainingVisual />
               </motion.div>
             </div>
           </motion.div>
@@ -163,21 +155,21 @@ export default function AgenticAIPage() {
         </div>
       </Reveal>
 
-      {/* ── RAG architecture ──────────────────────────────── */}
+      {/* ── ML lifecycle ──────────────────────────────────── */}
       <Reveal className="mx-auto max-w-shell wrap-gutter py-20">
         <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-start">
           <motion.div variants={fadeUp}>
-            <h2 className="eyebrow mb-5">RAG architecture</h2>
+            <h2 className="eyebrow mb-5">The ML lifecycle</h2>
             <p className="font-display text-3xl leading-tight text-fg">
-              Retrieval is the hard part.
+              From data to deployment.
             </p>
             <p className="mt-4 leading-relaxed text-fg-mute">
-              Production RAG goes well beyond naive lookup. I use HyDE, MMR for
-              diversity, and cross-encoder re-ranking to push retrieval accuracy and
-              answer quality.
+              A model is only as good as the pipeline around it. I treat data,
+              training, evaluation, and serving as one reproducible system — tracked,
+              versioned, and measured.
             </p>
             <ul className="mt-7 space-y-3">
-              {ragPrinciples.map((p) => (
+              {principles.map((p) => (
                 <li key={p} className="flex items-center gap-3 text-sm text-fg-mute">
                   <span className="h-1 w-1 rounded-full" style={{ background: "var(--accent)" }} />
                   {p}
@@ -186,16 +178,15 @@ export default function AgenticAIPage() {
             </ul>
           </motion.div>
 
-          {/* pipeline flow */}
           <motion.div variants={fadeUp} className="overflow-hidden rounded-[4px] border border-line bg-raised">
             <div className="flex items-center justify-between border-b border-line bg-surface px-4 py-2.5">
-              <span className="font-mono text-xs text-fg-mute">rag_pipeline</span>
+              <span className="font-mono text-xs text-fg-mute">pipeline</span>
               <span className="flex items-center gap-1.5 font-mono text-[11px]" style={{ color: "var(--accent)" }}>
-                <span className="live-dot h-1.5 w-1.5 rounded-full" style={{ background: "var(--accent)" }} /> live
+                <span className="live-dot h-1.5 w-1.5 rounded-full" style={{ background: "var(--accent)" }} /> running
               </span>
             </div>
             <div className="p-5">
-              {ragSteps.map((s, i) => {
+              {lifecycle.map((s, i) => {
                 const Icon = s.icon;
                 return (
                   <div key={s.label}>
@@ -207,9 +198,9 @@ export default function AgenticAIPage() {
                         <span className="block font-mono text-xs text-fg">{s.label}</span>
                         <span className="block font-mono text-[11px] text-fg-faint">{s.desc}</span>
                       </span>
-                      <span className="font-mono text-[10px] text-fg-faint tabular-nums">{i + 1}/{ragSteps.length}</span>
+                      <span className="font-mono text-[10px] text-fg-faint tabular-nums">{i + 1}/{lifecycle.length}</span>
                     </div>
-                    {i < ragSteps.length - 1 && (
+                    {i < lifecycle.length - 1 && (
                       <div className="ml-7 h-3 w-px" style={{ background: "var(--accent-line)" }} />
                     )}
                   </div>
@@ -236,10 +227,10 @@ export default function AgenticAIPage() {
       <Reveal className="mx-auto max-w-shell wrap-gutter py-20">
         <motion.div variants={fadeUp} className="mb-8">
           <h2 className="eyebrow mb-3">Implementation</h2>
-          <p className="font-display text-3xl leading-tight text-fg">A LangGraph agent, compiled.</p>
+          <p className="font-display text-3xl leading-tight text-fg">A CNN, training in PyTorch.</p>
         </motion.div>
         <motion.div variants={fadeUp}>
-          <CodeBlock code={code} filename="agent.py" lang="py" label="Python" maxHeight={440} />
+          <CodeBlock code={code} filename="train.py" lang="py" label="Python" maxHeight={460} />
         </motion.div>
       </Reveal>
 
@@ -274,40 +265,52 @@ export default function AgenticAIPage() {
   );
 }
 
-/* ── Agent loop visual ────────────────────────────────────── */
-function AgentLoopVisual() {
+/* ── Training log visual ──────────────────────────────────── */
+function TrainingVisual() {
   return (
     <div className="overflow-hidden rounded-[6px] border border-line bg-raised shadow-2xl">
       <div className="flex items-center justify-between border-b border-line bg-surface px-4 py-2.5">
-        <span className="font-mono text-[11px] text-fg-mute">agent_loop</span>
+        <span className="font-mono text-[11px] text-fg-mute">train.py · epoch log</span>
         <span className="flex items-center gap-1.5 font-mono text-[11px]" style={{ color: "var(--accent)" }}>
-          <span className="live-dot h-1.5 w-1.5 rounded-full" style={{ background: "var(--accent)" }} /> reasoning
+          <span className="live-dot h-1.5 w-1.5 rounded-full" style={{ background: "var(--accent)" }} /> training
         </span>
       </div>
       <div className="p-5">
-        {agentLoop.map((n, i) => {
-          const Icon = n.icon;
-          return (
-            <div key={n.label}>
-              <div className="flex items-center gap-3">
-                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-[3px] border border-line bg-bg" style={{ color: "var(--accent)" }}>
-                  <Icon size={14} />
-                </span>
-                <span className="flex-1 font-mono text-xs text-fg">{n.label}</span>
-                <span
-                  className={`h-1.5 w-1.5 rounded-full ${n.state === "run" ? "live-dot" : ""}`}
-                  style={{
-                    background:
-                      n.state === "out" ? "var(--chain2)" : n.state === "in" ? "var(--web)" : "var(--accent)",
-                  }}
-                />
-              </div>
-              {i < agentLoop.length - 1 && (
-                <div className="ml-4 h-4 w-px" style={{ background: "var(--accent-line)" }} />
-              )}
+        <div className="space-y-px overflow-hidden rounded-[4px] border border-line bg-line">
+          {trainLog.map((r) => (
+            <div key={r.e} className="flex items-center justify-between bg-bg px-3 py-2.5 font-mono text-xs">
+              <span className="text-fg-faint">epoch {r.e}</span>
+              <span className="text-fg-mute">loss {r.loss}</span>
+              <span className="flex items-center gap-2">
+                <span className="text-fg">acc {r.acc}</span>
+                {r.best && (
+                  <span
+                    className="rounded-full border px-2 py-0.5 text-[10px]"
+                    style={{ color: "var(--accent)", borderColor: "var(--accent-line)" }}
+                  >
+                    best
+                  </span>
+                )}
+              </span>
             </div>
-          );
-        })}
+          ))}
+        </div>
+        <div className="mt-4">
+          <div className="mb-1.5 flex justify-between font-mono text-[11px] text-fg-faint">
+            <span>training loss</span>
+            <span>0.169</span>
+          </div>
+          <div className="h-1 overflow-hidden rounded-full bg-surface">
+            <motion.div
+              className="h-full rounded-full"
+              style={{ background: "var(--accent)" }}
+              initial={{ width: "100%" }}
+              whileInView={{ width: "17%" }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.4, ease: "easeOut" }}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
