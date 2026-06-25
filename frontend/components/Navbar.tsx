@@ -17,15 +17,7 @@ const links = [
 
 export default function Navbar() {
   const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 16);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => setOpen(false), [pathname]);
 
@@ -37,10 +29,9 @@ export default function Navbar() {
       <div className="mx-auto max-w-shell wrap-gutter pt-3 sm:pt-4">
         <nav
           className={clsx(
-            "flex h-14 items-center justify-between rounded-2xl border pl-4 pr-2.5 transition-all duration-300",
-            scrolled
-              ? "border-line bg-bg/80 shadow-[0_12px_40px_-12px_rgba(0,0,0,0.75)] backdrop-blur-xl"
-              : "border-line/60 bg-bg/45 backdrop-blur-md"
+            "flex h-14 items-center justify-between rounded-full border pl-4 pr-2.5 transition-all duration-300",
+            "border-line bg-bg/80 shadow-[0_12px_40px_-12px_rgba(0,0,0,0.75)] backdrop-blur-xl"
+            
           )}
         >
           <Link href="/" className="group flex items-center gap-2.5" aria-label="Home">
