@@ -214,7 +214,7 @@ export default function AiMlPage() {
       {/* ── Stack ─────────────────────────────────────────── */}
       <Reveal className="mx-auto max-w-shell wrap-gutter py-20">
         <motion.h2 variants={fadeUp} className="eyebrow mb-10">Toolkit</motion.h2>
-        <div className="focus-peek grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="focus-dim grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {stack.map((s) => (
             <motion.div key={s.group} variants={fadeUp}>
               <StackCard title={s.group} items={s.items} color="var(--accent)" />
@@ -240,7 +240,7 @@ export default function AiMlPage() {
           <h2 className="eyebrow">Selected work</h2>
           <span className="font-mono text-xs text-fg-faint">{projects.length} projects</span>
         </motion.div>
-        <div className="focus-peek grid gap-5 sm:grid-cols-2">
+        <div className="focus-dim grid gap-5 sm:grid-cols-2">
           {projects.map((p, i) => (
             <motion.div key={p.title} variants={fadeUp}>
               <ProjectCard index={i + 1} {...p} />

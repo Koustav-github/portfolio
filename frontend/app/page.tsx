@@ -52,11 +52,9 @@ const meta = [
 ];
 
 const stackGroups = [
-  { label: "Languages", color: "var(--fg)", items: ["TypeScript", "Python", "Solidity", "SQL"] },
-  { label: "Web", color: "var(--web)", items: ["Next.js", "React", "Node", "FastAPI", "Tailwind"] },
-  { label: "Chain", color: "var(--chain)", items: ["Foundry", "Hardhat", "Ethers.js", "OpenZeppelin"] },
-  { label: "AI", color: "var(--ai)", items: ["LangGraph", "LangChain", "pgvector", "OpenAI", "Claude"] },
-  { label: "Infra", color: "var(--chain2)", items: ["Docker", "Postgres", "Redis", "Vercel", "Git"] },
+  { label: "WebDev", color: "var(--web)", items: ["Next.js", "React", "TypeScript", "Node", "FastAPI", "Tailwind", "PostgreSQL", "Prisma"] },
+  { label: "AI / ML", color: "var(--ai)", items: ["PyTorch", "TensorFlow", "scikit-learn", "Hugging Face", "LangChain", "LangGraph", "RAG", "pandas"] },
+  { label: "Others", color: "var(--chain)", items: ["C++", "Solidity", "Foundry", "System Design", "Kafka", "Redis", "gRPC", "Docker"] },
 ];
 
 const contacts = [
@@ -220,7 +218,7 @@ export default function HomePage() {
       {/* ── Stack ─────────────────────────────────────────── */}
       <Reveal className="mx-auto max-w-shell wrap-gutter py-20">
         <motion.h2 variants={fadeUp} className="eyebrow mb-10">Stack</motion.h2>
-        <div className="focus-peek grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="focus-dim grid grid-cols-1 gap-4 md:grid-cols-3">
           {stackGroups.map((g) => (
             <motion.div key={g.label} variants={fadeUp}>
               <StackCard title={g.label} items={g.items} color={g.color} />
