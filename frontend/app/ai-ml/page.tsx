@@ -10,6 +10,7 @@ import CodeBlock from "@/components/CodeBlock";
 import ProjectCard from "@/components/ProjectCard";
 import ParallaxPortrait from "@/components/ParallaxPortrait";
 import StackCard from "@/components/StackCard";
+import FlipText from "@/components/FlipText";
 
 const accentVars = {
   ["--accent" as string]: "#9a86e6",
@@ -250,11 +251,20 @@ export default function AiMlPage() {
       {/* ── Patterns ──────────────────────────────────────── */}
       <Reveal className="mx-auto max-w-shell wrap-gutter py-20">
         <motion.h2 variants={fadeUp} className="eyebrow mb-10">Architectures</motion.h2>
-        <div className="grid gap-px overflow-hidden rounded-[4px] border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
-          {patterns.map((p) => (
-            <motion.div key={p.t} variants={fadeUp} className="bg-bg p-6">
-              <div className="font-mono text-sm" style={{ color: "var(--accent)" }}>{p.t}</div>
-              <p className="mt-2.5 text-sm leading-relaxed text-fg-mute">{p.d}</p>
+        <div className="focus-dim grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {patterns.map((p, i) => (
+            <motion.div key={p.t} variants={fadeUp} className="group relative flex flex-col overflow-hidden border border-line p-6 transition-[transform,border-color] duration-300 hover:-translate-y-1.5 hover:border-line-strong">
+              <span className="pointer-events-none absolute left-0 top-0 h-full w-[3px] origin-top scale-y-0 transition-transform duration-300 ease-out group-hover:scale-y-100" style={{ background: "var(--accent)" }} />
+              {/* chronological number — fades in at bottom-left on hover */}
+              <span aria-hidden className="pointer-events-none absolute -bottom-4 -left-1 font-display text-[5.5rem] leading-none opacity-0 transition-opacity duration-300 group-hover:opacity-[0.14]" style={{ color: "var(--accent)" }}>
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <div className="relative">
+                <h3 className="font-mono text-sm text-fg">
+                  <FlipText label={p.t} light="var(--accent)" />
+                </h3>
+                <p className="mt-2.5 text-sm leading-relaxed text-fg-mute">{p.d}</p>
+              </div>
             </motion.div>
           ))}
         </div>

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, ArrowUpRight, Mail, Linkedin, GitBranchIcon } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Mail, Linkedin, GitBranchIcon,Github } from "lucide-react";
 import Reveal, { fadeUp, stagger } from "@/components/Reveal";
 import FlipText from "@/components/FlipText";
 import StackCard from "@/components/StackCard";
@@ -58,7 +58,7 @@ const stackGroups = [
 ];
 
 const contacts = [
-  { label: "GitHub", value: "Koustav Manna", href: "https://www.github.com/Koustav-github", icon: GitBranchIcon },
+  { label: "GitHub", value: "Koustav Manna", href: "https://www.github.com/Koustav-github", icon: Github },
   { label: "Email", value: "koustav.2005.manna@gmail.com", href: "mailto:koustav.2005.manna@gmail.com", icon: Mail },
   { label: "LinkedIn", value: "Koustav Manna", href: "https://www.linkedin.com/in/koustav-manna-b6a64330b/", icon: Linkedin },
   { label: "X", value: "Koustav Manna", href: "https://x.com/KoustavMan51112", icon: XIcon },

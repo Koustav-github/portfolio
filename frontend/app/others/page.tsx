@@ -10,6 +10,7 @@ import CodeBlock from "@/components/CodeBlock";
 import ProjectCard from "@/components/ProjectCard";
 import AmbientVideo from "@/components/AmbientVideo";
 import StackCard from "@/components/StackCard";
+import FlipText from "@/components/FlipText";
 
 const accentVars = {
   ["--accent" as string]: "#d6a84a",
@@ -64,40 +65,25 @@ const focus = [
   { icon: Activity, t: "Observability", d: "Metrics, tracing, and SLOs with Prometheus + Grafana." },
 ];
 
-const code = `// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
+const code = `# Cache-aside read-through with Redis
+import json
+import redis
 
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
+cache = redis.Redis(host="localhost", port=6379, decode_responses=True)
+TTL = 300  # seconds
 
-/// @title SimpleStaking - stake tokens, earn rewards
-contract SimpleStaking is ReentrancyGuard, Ownable {
-    IERC20 public immutable stakingToken;
-    uint256 public rewardRate = 100; // per block
+def get_user(user_id: str) -> dict:
+    key = f"user:{user_id}"
+    cached = cache.get(key)
+    if cached:
+        return json.loads(cached)            # cache hit
 
-    mapping(address => uint256) public stakedBalance;
-    mapping(address => uint256) public lastClaimBlock;
+    user = db.fetch_user(user_id)            # miss -> source of truth
+    cache.set(key, json.dumps(user), ex=TTL) # populate cache
+    return user
 
-    event Staked(address indexed user, uint256 amount);
-
-    constructor(address _token) Ownable(msg.sender) {
-        stakingToken = IERC20(_token);
-    }
-
-    function stake(uint256 amount) external nonReentrant {
-        require(amount > 0, "Amount must be > 0");
-        _claimRewards();
-        stakingToken.transferFrom(msg.sender, address(this), amount);
-        stakedBalance[msg.sender] += amount;
-        emit Staked(msg.sender, amount);
-    }
-
-    function pendingRewards(address user) public view returns (uint256) {
-        uint256 blocks = block.number - lastClaimBlock[user];
-        return (stakedBalance[user] * rewardRate * blocks) / 1e18;
-    }
-}`;
+def invalidate(user_id: str) -> None:
+    cache.delete(f"user:{user_id}")          # write-through invalidation`;
 
 export default function OthersPage() {
   return (
@@ -167,23 +153,30 @@ export default function OthersPage() {
       <Reveal className="mx-auto max-w-shell wrap-gutter py-20">
         <motion.h2 variants={fadeUp} className="eyebrow mb-10">Three threads</motion.h2>
         <div className="focus-dim grid gap-4 lg:grid-cols-3">
-          {pillars.map((p) => {
-            const Icon = p.icon;
+          {pillars.map((p, i) => {
             return (
-              <motion.div key={p.title} variants={fadeUp} className="card p-6">
-                <span className="grid h-10 w-10 place-items-center rounded-[6px]" style={{ background: "var(--accent-soft)", color: "var(--accent)" }}>
-                  <Icon size={18} />
+              <motion.div key={p.title} variants={fadeUp} className="group relative flex flex-col overflow-hidden border border-line p-6 transition-[transform,border-color] duration-300 hover:-translate-y-1.5 hover:border-line-strong">
+                {/* accent edge — slides in on hover */}
+                <span className="pointer-events-none absolute left-0 top-0 h-full w-[3px] origin-top scale-y-0 transition-transform duration-300 ease-out group-hover:scale-y-100" style={{ background: "var(--accent)" }} />
+                {/* chronological number — fades in at bottom-left on hover */}
+                <span aria-hidden className="pointer-events-none absolute -bottom-4 -left-1 font-display text-[5.5rem] leading-none opacity-0 transition-opacity duration-300 group-hover:opacity-[0.14]" style={{ color: "var(--accent)" }}>
+                  {String(i + 1).padStart(2, "0")}
                 </span>
-                <h3 className="mt-4 font-display text-xl text-fg">{p.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-fg-mute">{p.desc}</p>
-                <ul className="mt-4 space-y-2">
-                  {p.points.map((pt) => (
-                    <li key={pt} className="flex items-center gap-2.5 text-sm text-fg-mute">
-                      <span className="h-1 w-1 rounded-full" style={{ background: "var(--accent)" }} />
-                      {pt}
-                    </li>
-                  ))}
-                </ul>
+
+                <div className="relative">
+                  <h3 className="font-display text-xl text-fg">
+                    <FlipText label={p.title} light="var(--accent)" />
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-fg-mute">{p.desc}</p>
+                  <ul className="mt-4 space-y-2">
+                    {p.points.map((pt) => (
+                      <li key={pt} className="flex items-center gap-2.5 text-sm text-fg-mute">
+                        <span className="h-1 w-1 rounded-full" style={{ background: "var(--accent)" }} />
+                        {pt}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </motion.div>
             );
           })}
@@ -205,11 +198,11 @@ export default function OthersPage() {
       {/* ── Code ──────────────────────────────────────────── */}
       <Reveal className="mx-auto max-w-shell wrap-gutter py-20">
         <motion.div variants={fadeUp} className="mb-8">
-          <h2 className="eyebrow mb-3">Smart contracts</h2>
-          <p className="font-display text-3xl leading-tight text-fg">Gas-optimized Solidity.</p>
+          <h2 className="eyebrow mb-3">System design</h2>
+          <p className="font-display text-3xl leading-tight text-fg">Architecture, cached with Redis.</p>
         </motion.div>
         <motion.div variants={fadeUp}>
-          <CodeBlock code={code} filename="SimpleStaking.sol" lang="sol" label="Solidity" maxHeight={460} />
+          <CodeBlock code={code} filename="cache.py" lang="py" label="Python" maxHeight={460} />
         </motion.div>
       </Reveal>
 
@@ -231,17 +224,23 @@ export default function OthersPage() {
       {/* ── Focus ─────────────────────────────────────────── */}
       <Reveal className="mx-auto max-w-shell wrap-gutter py-20">
         <motion.h2 variants={fadeUp} className="eyebrow mb-10">Focus</motion.h2>
-        <div className="grid gap-px overflow-hidden rounded-[4px] border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
-          {focus.map((s) => {
-            const Icon = s.icon;
-            return (
-              <motion.div key={s.t} variants={fadeUp} className="bg-bg p-6">
-                <Icon size={18} style={{ color: "var(--accent)" }} />
-                <div className="mt-4 font-mono text-sm text-fg">{s.t}</div>
+        <div className="focus-dim grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {focus.map((s, i) => (
+            <motion.div key={s.t} variants={fadeUp} className="group relative flex flex-col overflow-hidden border border-line p-6 transition-[transform,border-color] duration-300 hover:-translate-y-1.5 hover:border-line-strong">
+              {/* accent edge — slides in on hover */}
+              <span className="pointer-events-none absolute left-0 top-0 h-full w-[3px] origin-top scale-y-0 transition-transform duration-300 ease-out group-hover:scale-y-100" style={{ background: "var(--accent)" }} />
+              {/* chronological number — fades in at bottom-left on hover */}
+              <span aria-hidden className="pointer-events-none absolute -bottom-4 -left-1 font-display text-[5.5rem] leading-none opacity-0 transition-opacity duration-300 group-hover:opacity-[0.14]" style={{ color: "var(--accent)" }}>
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <div className="relative">
+                <h3 className="font-mono text-sm text-fg">
+                  <FlipText label={s.t} light="var(--accent)" />
+                </h3>
                 <p className="mt-2 text-sm leading-relaxed text-fg-mute">{s.d}</p>
-              </motion.div>
-            );
-          })}
+              </div>
+            </motion.div>
+          ))}
         </div>
       </Reveal>
     </div>

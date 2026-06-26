@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, Linkedin, ArrowUpRight } from "lucide-react";
+import { Mail, Linkedin, ArrowUpRight, Github } from "lucide-react";
 
 function XIcon({ size = 15 }: { size?: number }) {
   return (
@@ -11,6 +11,7 @@ function XIcon({ size = 15 }: { size?: number }) {
 
 const socials = [
   { label: "Email", href: "mailto:koustav.2005.manna@gmail.com", icon: Mail },
+  { label: "Github", href: "https://github.com/Koustav-github", icon: Github },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/koustav-manna-b6a64330b/", icon: Linkedin },
   { label: "X", href: "https://x.com/KoustavMan51112", icon: XIcon },
 ];
@@ -49,7 +50,7 @@ export default function SiteFooter() {
         <div className="mt-10 flex flex-col gap-2 border-t border-line pt-6 font-mono text-xs text-fg-faint sm:flex-row sm:items-center sm:justify-between">
           <span>© {year} Koustav Manna — Jadavpur University</span>
           <span className="inline-flex items-center gap-1.5">
-            Built with Next.js + FastAPI
+            Built with Next.js
             <ArrowUpRight size={12} />
           </span>
         </div>
