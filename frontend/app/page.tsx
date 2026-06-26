@@ -136,9 +136,9 @@ export default function HomePage() {
 
       {/* ── About (faint parallax portrait) ───────────────── */}
       <section className="relative overflow-hidden border-y border-line">
-        <ParallaxPortrait src="/avatar.webp" opacity={0.14} />
+        <ParallaxPortrait src="/avatar.webp" opacity={0.14} align="left" />
         <Reveal as="div" className="relative z-10 mx-auto max-w-shell wrap-gutter py-24 sm:py-28">
-          <motion.div variants={fadeUp} className="max-w-xl">
+          <motion.div variants={fadeUp} className="ml-auto max-w-xl">
             <h2 className="eyebrow mb-6">About</h2>
             <p className="font-display text-2xl leading-tight text-fg sm:text-3xl">
               An Undergrad who builds software. Working where

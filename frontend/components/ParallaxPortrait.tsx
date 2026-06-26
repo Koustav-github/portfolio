@@ -17,7 +17,7 @@ export default function ParallaxPortrait({
 }: {
   src?: string;
   opacity?: number;
-  align?: "right" | "center";
+  align?: "right" | "center" | "left";
 }) {
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
@@ -38,19 +38,25 @@ export default function ParallaxPortrait({
   }, [mx, my]);
 
   const center = align === "center";
+  const left = align === "left";
   const mask = center
     ? "radial-gradient(ellipse 58% 64% at 50% 46%, #000 30%, transparent 80%)"
+    : left
+    ? "linear-gradient(to right, #000 0%, #000 32%, transparent 82%)"
     : "linear-gradient(to left, #000 0%, #000 32%, transparent 82%)";
+  const containerCls = center
+    ? "pointer-events-none absolute inset-0 overflow-hidden"
+    : left
+    ? "pointer-events-none absolute inset-y-0 left-0 w-full overflow-hidden sm:w-[70%] lg:w-[56%]"
+    : "pointer-events-none absolute inset-y-0 right-0 w-full overflow-hidden sm:w-[70%] lg:w-[56%]";
+  const objectCls = center
+    ? "object-cover object-center"
+    : left
+    ? "object-cover object-[40%_top]"
+    : "object-cover object-[60%_top]";
 
   return (
-    <div
-      aria-hidden
-      className={
-        center
-          ? "pointer-events-none absolute inset-0 overflow-hidden"
-          : "pointer-events-none absolute inset-y-0 right-0 w-full overflow-hidden sm:w-[70%] lg:w-[56%]"
-      }
-    >
+    <div aria-hidden className={containerCls}>
       {/* drifting layer */}
       <motion.div style={{ x, y }} className="absolute inset-[-7%]">
         <div
@@ -63,7 +69,7 @@ export default function ParallaxPortrait({
             fill
             priority
             sizes={center ? "100vw" : "60vw"}
-            className={center ? "object-cover object-center" : "object-cover object-[60%_top]"}
+            className={objectCls}
           />
         </div>
       </motion.div>
