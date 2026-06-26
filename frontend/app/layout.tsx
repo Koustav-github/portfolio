@@ -52,7 +52,7 @@ export default function RootLayout({
           <SmoothScroll>
             <div className="relative flex min-h-screen flex-col">
               <Navbar />
-              <main className="relative flex-1">{children}</main>
+              <main className="relative flex-1 overflow-x-clip">{children}</main>
               <SiteFooter />
             </div>
           </SmoothScroll>

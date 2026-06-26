@@ -126,7 +126,7 @@ export default function WebDevPage() {
 
       {/* ── Code + principles ─────────────────────────────── */}
       <Reveal className="mx-auto max-w-shell wrap-gutter py-20">
-        <div className="grid gap-12 lg:grid-cols-[1fr_1.15fr] lg:items-start">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_1.15fr] lg:items-start">
           <motion.div variants={fadeUp}>
             <h2 className="eyebrow mb-5">How I write code</h2>
             <p className="font-display text-3xl leading-tight text-fg">
@@ -148,7 +148,7 @@ export default function WebDevPage() {
               ))}
             </ul>
           </motion.div>
-          <motion.div variants={fadeUp}>
+          <motion.div variants={fadeUp} className="min-w-0">
             <CodeBlock code={code} filename="actions.ts" lang="ts" label="TypeScript" />
           </motion.div>
         </div>
