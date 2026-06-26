@@ -11,7 +11,7 @@ import { useEffect } from "react";
  * Decorative (aria-hidden). Honors reduced-motion by staying still.
  */
 export default function ParallaxPortrait({
-  src = "/avatar.png",
+  src = "/avatar.webp",
   opacity = 0.14,
   align = "right",
 }: {

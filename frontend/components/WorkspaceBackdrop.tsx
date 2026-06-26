@@ -10,7 +10,7 @@ import { useEffect } from "react";
  * Decorative (aria-hidden); holds still under prefers-reduced-motion.
  */
 export default function WorkspaceBackdrop({
-  src = "/workspace.png",
+  src = "/workspace.webp",
 }: {
   src?: string;
 }) {

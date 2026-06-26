@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     "Next.js",
     "Jadavpur University",
   ],
-  icons: "/avatar.png",
+  icons: "/avatar.webp",
   authors: [{ name: "Koustav Manna" }],
   openGraph: {
     title: "Koustav Manna",
