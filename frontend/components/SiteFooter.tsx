@@ -53,6 +53,7 @@ export default function SiteFooter() {
             Built with Next.js
             <ArrowUpRight size={12} />
           </span>
+          <span>Trying to to be legitimate...</span>
         </div>
       </div>
     </footer>
