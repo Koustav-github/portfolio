@@ -53,10 +53,8 @@ const stack = [
 ];
 
 const projects = [
-  { title: "Low-Latency Order Book", description: "A limit-order-book matching engine in C++ with lock-free queues and nanosecond-scale microbenchmarks.", tags: ["C++", "Lock-Free", "Order Book", "Benchmarks"], github: "/", featured: true },
-  { title: "Distributed Rate Limiter", description: "Sharded token-bucket rate limiter on Redis with sliding windows and graceful degradation under load.", tags: ["Redis", "System Design", "Go", "Sharding"], github: "/" },
-  { title: "Market Data Pipeline", description: "Real-time market-data ingestion over WebSockets with normalization and a replayable event log.", tags: ["WebSockets", "Kafka", "Python", "Time-Series"], github: "/" },
-  { title: "DeFi Yield Aggregator", description: "Gas-optimized yield router that rebalances across Aave and Compound to maximize depositor APY.", tags: ["Solidity", "Foundry", "Aave", "Ethers.js"], github: "/" },
+  { title: "FundMe", description: "A crowdfunding smart contract on Ethereum, built with Solidity and Foundry.", tags: ["Solidity", "Foundry", "Ethereum"], github: "https://github.com/Koustav-github?tab=repositories", featured: true },
+  { title: "Exam Management", description: "An exam management system built in Python with Mako templates.", tags: ["Python", "Mako", "SQL"], github: "https://github.com/Koustav-github/ExamManagement" },
 ];
 
 const focus = [

@@ -34,10 +34,10 @@ const principles = [
 ];
 
 const projects = [
-  { title: "Collaborative Task Manager", description: "Real-time task boards with drag-and-drop, team workspaces, and role-based access. Next.js App Router on Postgres.", tags: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "WebSockets"], github: "/", featured: true },
-  { title: "Portfolio CMS", description: "Headless CMS-powered portfolio with markdown content, project management, and an analytics dashboard.", tags: ["Next.js", "MDX", "Supabase", "Vercel"], github: "/" },
-  { title: "REST API Boilerplate", description: "Production-ready Node + TypeScript API template with JWT auth, rate limiting, validation, and Docker.", tags: ["Node.js", "Express", "JWT", "Docker", "Zod"], github: "/" },
-  { title: "Realtime Chat", description: "End-to-end encrypted chat with rooms, direct messages, file sharing, and read receipts over Socket.io.", tags: ["React", "Socket.io", "MongoDB", "Redis"], github: "/" },
+  { title: "Penny", description: "An all-in-one money management app — track, manage, invest, and grow. Makes personal finance simple with strategy guidance for your situation.", tags: ["TypeScript", "Next.js", "Python", "FastAPI"], github: "https://github.com/Koustav-github/Penny", live: "https://penny-orpin.vercel.app", featured: true },
+  { title: "Trajectory 2K26", description: "Official website for Trajectory 2026, built with Next.js and TypeScript.", tags: ["Next.js", "TypeScript", "CSS"], github: "https://github.com/Koustav-github/TRAJECTORY_2k26", live: "https://www.trajectoryjume.com/" },
+  { title: "SnapSyntax", description: "Hackathon build for Srijan '26 (SnapSyntax) — a Next.js + TypeScript web app.", tags: ["Next.js", "TypeScript", "Hackathon"], github: "https://github.com/Koustav-github/Srijan26_SnapSyntax3_AITookOurJob", live: "https://srijan26-snap-syntax3-ai-took-our-j.vercel.app" },
+  { title: "Portfolio", description: "This very portfolio — Next.js, TypeScript, Tailwind, and Framer Motion.", tags: ["Next.js", "TypeScript", "Tailwind", "Framer Motion"], github: "https://github.com/Koustav-github/portfolio", live: "https://koustav-manna.dev" },
 ];
 
 const workflow = [

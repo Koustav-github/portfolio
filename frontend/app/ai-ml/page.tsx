@@ -49,10 +49,8 @@ const stack = [
 ];
 
 const projects = [
-  { title: "Image Classifier", description: "A CNN trained from scratch in PyTorch with augmentation and mixed-precision; ~96% top-1 on a 10-class set.", tags: ["PyTorch", "CNN", "CUDA", "Albumentations"], github: "/", featured: true },
-  { title: "Transformer Fine-Tune", description: "Fine-tuned a transformer for sentiment with LoRA, served via a quantized ONNX endpoint for low-latency inference.", tags: ["Hugging Face", "LoRA", "ONNX", "FastAPI"], github: "/" },
-  { title: "Document RAG Pipeline", description: "Retrieval-augmented generation with hybrid search, cross-encoder re-ranking, and grounded, cited answers.", tags: ["LangChain", "pgvector", "BM25", "Rerank"], github: "/" },
-  { title: "Multi-Agent Research", description: "LangGraph agents that decompose questions, delegate to sub-agents, and synthesize cited reports.", tags: ["LangGraph", "OpenAI", "Tavily", "Python"], github: "/" },
+  { title: "Verity", description: "An AI/ML project built in Python.", tags: ["Python", "ML"], github: "https://github.com/Koustav-github/Verity", featured: true },
+  { title: "FreshlyFishy", description: "An AI/ML project built in Python.", tags: ["Python", "ML"], github: "https://github.com/Koustav-github?tab=repositories" },
 ];
 
 const patterns = [
