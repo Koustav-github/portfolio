@@ -51,9 +51,7 @@ export default function SiteFooter() {
           <span>© {year} Koustav Manna — Jadavpur University</span>
           <span className="inline-flex items-center gap-1.5">
             Built with Next.js
-            <ArrowUpRight size={12} />
           </span>
-          <span>Trying to to be legitimate...</span>
         </div>
       </div>
     </footer>
