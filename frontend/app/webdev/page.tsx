@@ -36,7 +36,7 @@ const principles = [
 
 const projects = [
   { title: "Penny", description: "An all-in-one money management app — track, manage, invest, and grow. Makes personal finance simple with strategy guidance for your situation.", tags: ["TypeScript", "Next.js", "Python", "FastAPI"], github: "https://github.com/Koustav-github/Penny", live: "https://penny-orpin.vercel.app", featured: true, image: "/Penny.webp" },
-  { title: "Trajectory 2K26", description: "Official website for Trajectory 2026, built with Next.js and TypeScript.", tags: ["Next.js", "TypeScript", "CSS"], github: "https://github.com/Koustav-github/TRAJECTORY_2k26", live: "https://www.trajectoryjume.com/", image: "/Trajectory.webp" },
+  { title: "Trajectory 2K26", description: "Official website for Trajectory 2026, built with Next.js and TypeScript.", tags: ["Next.js", "TypeScript", "CSS"], github: "https://github.com/Koustav-github/TRAJECTORY_2k26", live: "https://trajectory-2k26-phi.vercel.app/", image: "/Trajectory.webp" },
   { title: "SnapSyntax", description: "Hackathon build for Srijan '26 (SnapSyntax) — a Next.js + TypeScript web app.", tags: ["Next.js", "TypeScript", "Hackathon"], github: "https://github.com/Koustav-github/Srijan26_SnapSyntax3_AITookOurJob", live: "https://srijan26-snap-syntax3-ai-took-our-j.vercel.app", image: "/Snap_syntax.webp" },
   { title: "Portfolio", description: "This very portfolio — Next.js, TypeScript, Tailwind, and Framer Motion.", tags: ["Next.js", "TypeScript", "Tailwind", "Framer Motion"], github: "https://github.com/Koustav-github/portfolio", live: "https://koustav-manna.dev", image: "/portfolio.webp" },
 ];
