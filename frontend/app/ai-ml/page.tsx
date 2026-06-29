@@ -51,7 +51,7 @@ const stack = [
 
 const projects = [
   { title: "Verity", description: "An AI/ML project built in Python.", tags: ["Python", "ML"], github: "https://github.com/Koustav-github/Verity", featured: true },
-  { title: "FreshlyFishy", description: "An AI/ML project built in Python.", tags: ["Python", "ML"], github: "https://github.com/Koustav-github?tab=repositories" },
+  { title: "FreshlyFishy", description: "An AI/ML project built in Python.", tags: ["Python", "ML"], github: "https://github.com/Koustav-github?tab=repositories", image: "/Freshly_fishy.webp" },
 ];
 
 const patterns = [
