@@ -50,7 +50,7 @@ const stack = [
 ];
 
 const projects = [
-  { title: "Verity", description: "An AI/ML project built in Python.", tags: ["Python", "ML"], github: "https://github.com/Koustav-github/Verity", featured: true },
+  { title: "Verity", description: "CI/CD for ML models — automated evaluation gating, a versioned registry, containerized serving, and production monitoring, with zero manual deployment steps.", tags: ["Python", "MLOps", "CI/CD"], github: "https://github.com/Koustav-github/Verity", featured: true },
   { title: "FreshlyFishy", description: "An AI/ML project built in Python.", tags: ["Python", "ML"], github: "https://github.com/Koustav-github?tab=repositories", image: "/Freshly_fishy.webp" },
 ];
 

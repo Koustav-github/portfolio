@@ -10,7 +10,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Koustav Manna — Software Developer",
   description:
-    "Koustav Manna — software developer working across three disciplines: full-stack web, AI / ML & deep learning, and systems (system design, HFT, blockchain). Jadavpur University.",
+    "Koustav Manna — software developer working across three disciplines: full-stack web, AI / ML & deep learning, and systems (system design, HFT, MLOps). Open-source contributor to MLflow, DeepEval, and Stable-Baselines3. Jadavpur University.",
   keywords: [
     "Koustav Manna",
     "Software Developer",
@@ -20,7 +20,9 @@ export const metadata: Metadata = {
     "PyTorch",
     "System Design",
     "HFT",
-    "Blockchain",
+    "MLOps",
+    "MLflow",
+    "Open Source Contributor",
     "Next.js",
     "Jadavpur University",
   ],
@@ -29,7 +31,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Koustav Manna",
     description:
-      "Full-stack web, AI / ML, and systems — system design, HFT, and blockchain. One engineer, three disciplines.",
+      "Full-stack web, AI / ML, and systems — system design, HFT, and MLOps. One engineer, three disciplines.",
     type: "website",
   },
 };

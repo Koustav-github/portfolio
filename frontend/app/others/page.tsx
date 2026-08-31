@@ -3,12 +3,12 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
-  ArrowLeft, Boxes, Activity, Blocks, Gauge, ShieldCheck, Network,
+  ArrowLeft, Boxes, Activity, Workflow, Gauge, Radar, Network, PackageCheck,
 } from "lucide-react";
 import Reveal, { fadeUp, stagger } from "@/components/Reveal";
 import CodeBlock from "@/components/CodeBlock";
 import ProjectCard from "@/components/ProjectCard";
-import AmbientVideo from "@/components/AmbientVideo";
+import ParallaxPortrait from "@/components/ParallaxPortrait";
 import StackCard from "@/components/StackCard";
 import FlipText from "@/components/FlipText";
 
@@ -21,8 +21,8 @@ const accentVars = {
 const domainBar = [
   { k: "Focus", v: "System Design" },
   { k: "Trading", v: "Low-Latency / HFT" },
-  { k: "Chain", v: "Ethereum / EVM" },
-  { k: "Langs", v: "C++ · Solidity" },
+  { k: "MLOps", v: "Train → Ship → Watch" },
+  { k: "Langs", v: "C++ · Python" },
 ];
 
 const pillars = [
@@ -39,30 +39,63 @@ const pillars = [
     points: ["Limit order book & matching", "Lock-free data structures", "Market-data ingestion", "Backtesting & risk checks"],
   },
   {
-    icon: Blocks,
-    title: "Blockchain",
-    desc: "Smart contracts and DeFi protocols on Ethereum and EVM-compatible chains.",
-    points: ["Gas-optimized Solidity", "Reentrancy-safe patterns", "DeFi (AMMs, vaults)", "Foundry fuzz testing"],
+    icon: Workflow,
+    title: "MLOps",
+    desc: "The distance between a notebook and production — automated, versioned, and observable.",
+    points: ["Experiment tracking & model registry", "Reproducible pipelines (DVC + CI)", "Eval gates before promotion", "Drift & latency monitoring"],
+  },
+];
+
+const mlopsLoop = [
+  {
+    t: "Version",
+    d: "Data, code, and weights move together. DVC + Git so any model in production traces back to one commit, one dataset hash, one seed.",
+    tools: ["DVC", "Git", "LakeFS"],
+  },
+  {
+    t: "Track",
+    d: "Every run logs params, metrics, and artifacts — no results living in a notebook cell. The registry is the single source of truth for what is staged and what is live.",
+    tools: ["MLflow", "W&B"],
+  },
+  {
+    t: "Automate",
+    d: "Pipelines as code, not as a runbook. Scheduled retraining and a CI job that reruns the whole thing on every PR, so the training path never rots.",
+    tools: ["Airflow", "GitHub Actions"],
+  },
+  {
+    t: "Gate",
+    d: "Nothing ships on accuracy alone. Eval suites, regression baselines against the incumbent, and slice metrics block a promotion before users ever see it.",
+    tools: ["DeepEval", "pytest"],
+  },
+  {
+    t: "Serve",
+    d: "Containerized inference behind a versioned API — quantized or ONNX-compiled where latency matters, with canary rollout and a one-command rollback.",
+    tools: ["Docker", "ONNX", "BentoML"],
+  },
+  {
+    t: "Watch",
+    d: "Drift, data quality, latency, and cost on one board. Alerts wired to a retraining trigger, so the loop closes instead of ending at a dashboard.",
+    tools: ["Prometheus", "Evidently"],
   },
 ];
 
 const stack = [
   { group: "System Design", items: ["Distributed Systems", "Caching", "Kafka", "Redis", "Load Balancing", "Sharding"] },
   { group: "HFT / Latency", items: ["C++", "Order Books", "Backtesting", "Market Data", "WebSockets", "Lock-Free"] },
-  { group: "Blockchain", items: ["Solidity", "Foundry", "Ethereum", "DeFi", "Web3", "OpenZeppelin"] },
-  { group: "Infra", items: ["Docker", "Postgres", "gRPC", "Linux", "Prometheus"] },
+  { group: "MLOps", items: ["MLflow", "DVC", "Airflow", "BentoML", "ONNX", "Evidently"] },
+  { group: "Infra", items: ["Docker", "Kubernetes", "GitHub Actions", "Postgres", "gRPC", "Prometheus"] },
 ];
 
 const projects = [
-  { title: "FundMe", description: "A crowdfunding smart contract on Ethereum, built with Solidity and Foundry.", tags: ["Solidity", "Foundry", "Ethereum"], github: "https://github.com/Koustav-github?tab=repositories", featured: true },
+  { title: "Verity", description: "CI/CD for ML models — automated evaluation gating, a versioned registry, containerized serving, and production monitoring, with zero manual deployment steps.", tags: ["Python", "MLOps", "CI/CD", "Docker"], github: "https://github.com/Koustav-github/Verity", featured: true },
   { title: "Exam Management", description: "An exam management system built in Python with Mako templates.", tags: ["Python", "Mako", "SQL"], github: "https://github.com/Koustav-github/ExamManagement" },
 ];
 
 const focus = [
   { icon: Network, t: "Distributed Systems", d: "Sharding, replication, consensus, CAP trade-offs." },
   { icon: Gauge, t: "Low-Latency", d: "Lock-free structures, cache-aware code, kernel bypass." },
-  { icon: ShieldCheck, t: "Smart Contracts", d: "Gas-optimized, reentrancy-safe Solidity with fuzz tests." },
-  { icon: Activity, t: "Observability", d: "Metrics, tracing, and SLOs with Prometheus + Grafana." },
+  { icon: PackageCheck, t: "Model Delivery", d: "Registry, eval gates, and reproducible one-command rollouts." },
+  { icon: Radar, t: "Observability", d: "Metrics, tracing, drift detection, and SLOs on live models." },
 ];
 
 const code = `# Cache-aside read-through with Redis
@@ -91,14 +124,7 @@ export default function OthersPage() {
       {/* ── Hero ──────────────────────────────────────────── */}
       <section className="relative overflow-hidden border-b border-line">
         <div className="bg-grid pointer-events-none absolute inset-0 opacity-50" />
-        <AmbientVideo
-          src="/Blockchain.mp4"
-          className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-[58%] w-full object-cover opacity-[0.15]"
-          style={{
-            WebkitMaskImage: "linear-gradient(to top, transparent 2%, #000 30%, #000 80%, transparent 100%)",
-            maskImage: "linear-gradient(to top, transparent 2%, #000 30%, #000 80%, transparent 100%)",
-          }}
-        />
+        <ParallaxPortrait src="/workspace.webp" opacity={0.18} align="center" />
         <div className="relative z-10 mx-auto max-w-shell wrap-gutter pb-16 pt-32 sm:pt-40">
           <motion.div variants={stagger(0.08, 0.05)} initial="hidden" animate="show">
             <motion.div variants={fadeUp}>
@@ -115,15 +141,15 @@ export default function OthersPage() {
                 <motion.h1 variants={fadeUp} className="font-display text-[clamp(2.6rem,8vw,5.5rem)] text-fg">
                   Systems, markets
                   <br />
-                  <span style={{ color: "var(--accent)" }}>&amp; chains.</span>
+                  <span style={{ color: "var(--accent)" }}>&amp; pipelines.</span>
                 </motion.h1>
                 <motion.p variants={fadeUp} className="mt-7 max-w-lg text-pretty leading-relaxed text-fg-mute">
                   The rest of the stack I care about — scalable system design,
-                  low-latency trading systems, and Ethereum smart contracts. The hard,
-                  performance-critical corners.
+                  low-latency trading systems, and the MLOps that carries a model
+                  from notebook to production and keeps it honest there.
                 </motion.p>
                 <motion.div variants={fadeUp} className="mt-7 flex flex-wrap gap-1.5">
-                  {["System Design", "HFT", "Blockchain", "Distributed", "Low-Latency"].map((t) => (
+                  {["System Design", "HFT", "MLOps", "Distributed", "Low-Latency"].map((t) => (
                     <span key={t} className="chip">{t}</span>
                   ))}
                 </motion.div>
@@ -180,6 +206,52 @@ export default function OthersPage() {
               </motion.div>
             );
           })}
+        </div>
+      </Reveal>
+
+      {/* ── MLOps loop ────────────────────────────────────── */}
+      <Reveal className="mx-auto max-w-shell wrap-gutter py-20">
+        <motion.div variants={fadeUp} className="mb-10">
+          <h2 className="eyebrow mb-3">MLOps</h2>
+          <p className="font-display text-3xl leading-tight text-fg">
+            A model isn&apos;t done when it trains.
+          </p>
+          <p className="mt-4 max-w-xl text-pretty leading-relaxed text-fg-mute">
+            The six stages that turn a notebook result into something a team can
+            ship, trust, and roll back — each one automated, or it doesn&apos;t hold.
+          </p>
+        </motion.div>
+
+        <div className="focus-dim grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {mlopsLoop.map((m, i) => (
+            <motion.div
+              key={m.t}
+              variants={fadeUp}
+              className="group relative flex flex-col overflow-hidden border border-line p-6 transition-[transform,border-color] duration-300 hover:-translate-y-1.5 hover:border-line-strong"
+            >
+              <span className="pointer-events-none absolute left-0 top-0 h-full w-[3px] origin-top scale-y-0 transition-transform duration-300 ease-out group-hover:scale-y-100" style={{ background: "var(--accent)" }} />
+              <span aria-hidden className="pointer-events-none absolute -bottom-4 -left-1 font-display text-[5.5rem] leading-none opacity-0 transition-opacity duration-300 group-hover:opacity-[0.14]" style={{ color: "var(--accent)" }}>
+                {String(i + 1).padStart(2, "0")}
+              </span>
+
+              <div className="relative flex flex-1 flex-col">
+                <div className="mb-3 flex items-baseline gap-3">
+                  <span className="font-mono text-xs text-fg-faint tabular-nums">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="font-display text-xl text-fg">
+                    <FlipText label={m.t} light="var(--accent)" />
+                  </h3>
+                </div>
+                <p className="flex-1 text-sm leading-relaxed text-fg-mute">{m.d}</p>
+                <div className="mt-5 flex flex-wrap gap-1.5">
+                  {m.tools.map((tool) => (
+                    <span key={tool} className="chip">{tool}</span>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </Reveal>
 
@@ -252,7 +324,7 @@ function PillarsVisual() {
   const rows = [
     { icon: Boxes, label: "System Design", tag: "scale" },
     { icon: Activity, label: "HFT / Low-Latency", tag: "speed" },
-    { icon: Blocks, label: "Blockchain", tag: "trust" },
+    { icon: Workflow, label: "MLOps", tag: "ship" },
   ];
   return (
     <div className="overflow-hidden rounded-[6px] border border-line bg-raised shadow-2xl">

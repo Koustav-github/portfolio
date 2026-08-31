@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-const WORDS = ["webdev", "blockchain", "ai/ml"];
+const WORDS = ["webdev", "mlops", "ai/ml"];
 const TRAVEL = 32; // knob travel: track(64) - padding(8) - knob(24)
 
 export default function Loader() {
